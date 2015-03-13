@@ -1,4 +1,4 @@
-all: notifications.html
+all: index.html
 
-notifications.html: notifications.bs Makefile
+index.html: notifications.bs Makefile
 	bikeshed spec
