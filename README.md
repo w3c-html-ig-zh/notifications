@@ -1,3 +1,3 @@
-This repository hosts the
-[Notifications API Standard](https://notifications.spec.whatwg.org/). Patch
-`notifications.bs` for pull requests.
+这里是**通知 API 标准**[英文版](https://notifications.spec.whatwg.org/)的
+[中文译文](http://w3c-html-ig-zh.github.io/notifications/)。任何关于中文译的修改
+都在 `notifications.bs` 中。
