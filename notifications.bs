@@ -1,24 +1,24 @@
 <pre class="metadata">
-Title: Notifications API
+Title: 通知 API
 Group: WHATWG
-H1: Notifications API
+H1: 通知 API
 Shortname: notifications
 Status: LS
 No Editor: true
-Abstract: This standard defines an API to display notifications to the end user, typically outside the top-level browsing context's viewport. It is designed to be compatible with existing notification systems, while remaining platform-independent.
+Abstract: 该标准定义了一个 API 来给终端用户显示通知，通常显示在顶层浏览上下文视口。
+该 API 被设计成与现有的通知系统兼容，但依然是平台独立的。
 Logo: https://resources.whatwg.org/logo-notifications.svg
-!Participate: <a href="https://github.com/whatwg/notifications/issues/new">file an issue</a> (<a href="https://github.com/whatwg/notifications/issues">open issues</a>)
-!Participate: <a href="https://whatwg.org/mailing-list">whatwg@whatwg.org</a> (<a href="https://whatwg.org/mailing-list#specs">archives</a>)
-!Participate: <a href="http://wiki.whatwg.org/wiki/IRC">IRC: #whatwg on Freenode</a>
-!Commits: <a href="https://github.com/whatwg/notifications/commits">https://github.com/whatwg/notifications/commits</a>
-!Commits: <a href="https://twitter.com/notifyapi">@notifyapi</a>
+!参与: <a href="https://github.com/whatwg/notifications/issues/new">提交错误报告</a> (<a href="https://github.com/whatwg/notifications/issues">打开错误报告</a>)
+!参与: <a href="https://whatwg.org/mailing-list">whatwg@whatwg.org</a> (<a href="https://whatwg.org/mailing-list#specs">存档</a>)
+!参与: <a href="http://wiki.whatwg.org/wiki/IRC">IRC: #whatwg on Freenode</a>
+!提交: <a href="https://github.com/whatwg/notifications/commits">https://github.com/whatwg/notifications/commits</a>
+!提交: <a href="https://twitter.com/notifyapi">@notifyapi</a>
 Indent: 2
 </pre>
 
-<h2 id=terminology>Terminology</h2>
+<h2 id=terminology>术语</h2>
 
-<p>Some terms used in this specification are defined in the DOM, Fetch,
-HTML, IDL, URL and Vibration API Standards.
+<p>本规范中使用的一些术语取自DOM、Fetch、HTML、IDL、URL 和 振动 API 标准。
 [[!DOM]]
 [[!FETCH]]
 [[!HTML]]
@@ -27,194 +27,166 @@ HTML, IDL, URL and Vibration API Standards.
 [[!VIBRATION]]
 
 
-<h2 id=notifications>Notifications</h2>
+<h2 id=notifications>通知</h2>
 
-<p>A <dfn lt="concept notification">notification</dfn> is an abstract
-representation of an occurrence, such as the delivery of a message.
+<p><dfn lt="concept notification">通知</dfn>是事件发生的抽象表示，如信息发出。
 
-<p>A <a lt="concept notification">notification</a> has an associated
-<dfn lt="concept title">title</dfn> which is a DOMString.
+<p><a lt="concept notification">通知</a>有一个关联的 DOMString 类型的
+<dfn lt="concept title">标题</dfn>。
 
-<p>A <a lt="concept notification">notification</a> has an associated
-<dfn>body</dfn> which is a DOMString.
+<p><a lt="concept notification">通知</a>有一个关联的 DOMString 类型的
+<dfn>主体</dfn>。
 
-<p>A <a lt="concept notification">notification</a> has an associated
-<dfn lt="concept direction">direction</dfn> which is one of
-<i>auto</i>, <i>ltr</i>, and <i>rtl</i>.
+<p><a lt="concept notification">通知</a>有一个关联的
+<dfn lt="concept direction">方向</dfn>，其值是
+<i>auto</i>、<i>ltr</i> 和 <i>rtl</i> 三者之一。
 
-<p>A <a lt="concept notification">notification</a> has an associated
-<dfn lt="concept language">language</dfn> which is a DOMString
-representing either a valid BCP 47 language tag or the empty string.
+<p><a lt="concept notification">通知</a>有一个关联的 DOMString 类型的
+<dfn lt="concept language">语言</dfn>，其值是一个有效的 BCP 47 语言标记或空字符串。
 
-<p>A <a lt="concept notification">notification</a> has an associated
-<dfn>tag</dfn> which is a DOMString.
+<p><a lt="concept notification">通知</a>有一个关联的 DOMString 类型的
+<dfn>标签</dfn>。
 
-<p>A <a lt="concept notification">notification</a> has an associated
-<dfn>data</dfn>.
+<p><a lt="concept notification">通知</a>有一个关联的<dfn>数据</dfn>.
 
-<p>A <a lt="concept notification">notification</a> has an associated
-<dfn lt="concept origin">origin</dfn>.
+<p><a lt="concept notification">通知</a>有一个关联的
+<dfn lt="concept origin">起源</dfn>.
 
-<p>A <a lt="concept notification">notification</a> has an associated
-<dfn>renotify preference flag</dfn> which is initially unset. When set indicates
-that the end user should be alerted after the <a>replace steps</a> have run.
+<p><a lt="concept notification">通知</a>有一个关联的未被设置的
+<dfn>重通知偏好标志</dfn>。设置该标志表示运行<a>替代步骤</a>后，最终用户会被警告。
 
-<p>A <a lt="concept notification">notification</a> has an associated
-<dfn>silent preference flag</dfn> which is initially unset. When set indicates
-that no sounds or vibrations should be made.
+<p><a lt="concept notification">通知</a>有一个关联的未被设置的
+<dfn>静音偏好标志</dfn>。设置该标志表示不接收声音或者振动通知。
 
-<p>A <a lt="concept notification">notification</a> has an associated
-<dfn>screen off preference flag</dfn> which is initially unset. When set
-indicates that the screen of the device should not be enabled.
+<p><a lt="concept notification">通知</a>有一个关联的未被设置的
+<dfn>屏幕关闭偏好标志</dfn>。设置该标志表示设备屏幕不会被启用。
 
-<p>A <a lt="concept notification">notification</a> has an associated
-<dfn>sticky preference flag</dfn> which is initially unset. When set indicates
-that the end user should not be able to easily clear the
-<a lt="concept notification">notification</a> <span class=note>Only makes sense
-for <a>persistent notifications</a>.
+<p><a lt="concept notification">通知</a>有一个关联的未被设置的
+<dfn>粘性偏好设置</dfn>。设置该标志表示最终用户将不能很容易地清除
+<a lt="concept notification">通知</a>。<span class=note>仅适用于<a>持久通知</a>。
 
-<p>A <a lt="concept notification">notification</a> <em>can</em> have an
-associated <dfn>icon URL</dfn>, <dfn>icon resource</dfn>, <dfn>sound URL</dfn>,
-<dfn>sound resource</dfn>, <dfn>vibration pattern</dfn>, and
-<dfn>service worker registration</dfn>.
+<p><a lt="concept notification">通知</a><em>可以</em>有相关联的
+<dfn>图标 URL</dfn>、<dfn>图标资源</dfn>、<dfn>声音 URL</dfn>、
+<dfn>声音资源/dfn>、<dfn>振动模式</dfn>以及。
 
-<p class=note>Developers are encouraged to not convey information through an
-icon, sound, or vibration pattern that is not otherwise accessible to the end
-user.
+<p class=note>不鼓励开发者通过图标、声音或振动模式来给最终用户传达信息；除非这些信息
+是最终用户可以访问的。
 
-<p>A <dfn>non-persistent notification</dfn> is a
-<a lt="concept notification">notification</a> without an associated
-<a>service worker registration</a>.
+<p><dfn>非持久通知</dfn>是没有关联<dfn>服务线程注册</dfn>的
+<a lt="concept notification">通知</a>。
 
-<p>A <dfn>persistent notification</dfn> is a
-<a lt="concept notification">notification</a> with an associated
-<a>service worker registration</a>.
+<p><dfn>持久通知</dfn>是关联了<dfn>服务线程注册</dfn>的
+<a lt="concept notification">通知</a>。
 
 <!-- XXX https://html.spec.whatwg.org/#fingerprinting-vector -->
 
 <hr>
 
-<p>To <dfn>create a notification</dfn>, given a <var>title</var> and
-<var>options</i>, run these steps:
+<p>为<dfn>创建通知</dfn>, 给定一个 <var>title</var> 和 <var>options</ar>，执行
+这些步骤：
 
 <ol>
-  <li><p>Let <var>notification</var> be a new
-  <a lt="concept notification">notification</a>.
+  <li><p>设 <var>notification</var> 是一个新的
+  <a lt="concept notification">通知</a>.
 
-  <li><p>If <var>options</var>'s <code>silent</code> is true, and either
-  <var>options</var>'s <code>sound</code> is present or <var>options</var>'s
-  <code>vibrate</code> is present, <a>throw</a> a <code>TypeError</code>
-  exception.
+  <li><p>如果 <var>options</var> 的 <code>silent</code> 为 true, 那么
+  <var>options</var> 的 <code>sound</code> 或者 <var>options</var> 的
+  <code>vibrate</code> 出现时，<a>抛出</a> <code>TypeError</code> 异常。
 
-  <li><p>If <var>options</var>'s <code>renotify</code> is true and
-  <var>options</var>'s <code>tag</code> is the empty string, <a>throw</a> a
-  <code>TypeError</code> exception.
+  <li><p>如果 <var>options</var> 的 <code>renotify</code> 为 true 并且
+  <var>options</var> 的 <code>tag</code> 为空字符串，那么<a>抛出</a>
+  <code>TypeError</code> 异常.
 
-  <li><p>Set <var>notification</var>'s <a>data</a> to a <a>structured clone</a>
-  of <var>options</var>'s <code>data</code>. Rethrow any exceptions.
+  <li><p>设置 <var>notification</var> 的 <a>data</a> 为<a>结构化克隆</a>的
+  <var>options</var> 的 <code>data</code>。重新抛出任何异常。
 
-  <li><p>Set <var>notification</var>'s <a lt="concept title">title</a>
-  to <var>options</var>'s <code>title</code>.
+  <li><p>设置 <var>notification</var> 的 <a lt="concept title">title</a>
+  为 <var>options</var> 的 <code>title</code>。
 
-  <li><p>Set <var>notification</var>'s
-  <a lt="concept direction">direction</a> to <var>options</var>'s
-  <code>dir</code>.
+  <li><p>设置 <var>notification</var> 的 <a lt="concept direction">direction</a>
+  为 <var>options</var> 的 <code>dir</code>。
 
-  <li><p>If <var>options</var>'s <code>lang</code> is either a valid BCP 47
-  language tag or the empty string, set <var>notification</var>'s
-  <a lt="concept language">language</a> to <var>options</var>'s
-  <code>lang</code>, and set it to the empty string otherwise. [[!LANG]]
+  <li><p>如果 <var>options</var> 的 <code>lang</code> 是一个有效的 BCP 47 
+  语言标记或空字符串, 设置 <var>notification</var> 的
+  <a lt="concept language">language</a> 为 <var>options</var> 的
+  <code>lang</code>；否则将之设置为空字符串。 [[!LANG]]
 
-  <li><p>Set <var>notification</var>'s <a lt="concept origin">origin</a> to the
-  <a>entry settings object</a>'s <a>origin</a>.
+  <li><p>设置 <var>notification</var> 的 <a lt="concept origin">origin</a> 为
+  <a>入口设置对象</a> 的 <a>origin</a>。
 
-  <li><p>Set <var>notification</var>'s <a>body</a> to <var>options</var>'s
-  <code>body</code>.
+  <li><p>设置 <var>notification</var> 的 <a>主体</a> 为 <var>options</var> 的
+  <code>body</code>。
 
-  <li><p>Set <var>notification</var>'s <a>tag</a> to <var>options</var>'s
-  <code>tag</code>.
+  <li><p>设置 <var>notification</var> 的 <a>tag</a> 为 <var>options</var> 的
+  <code>tag</code>。
 
-  <li><p>Let <var>baseURL</var> be the API base URL specified by the
-  <a>entry settings object</a>. <span class=XXX>Or incumbent?</span>
+  <li><p>设 <var>baseURL</var> 为<a>入口设置对象</a>指定的 API 基础 URL。
+  <span class=XXX>或现任？</span>
 
-  <li><p>If <var>options</var>'s <code>icon</code> is present,
-  <a lt="url parser">parse</a> it using <var>baseURL</var>, and if that does not
-  return failure, set <var>notification</var>'s <a>icon URL</a> to the return
-  value. (Otherwise <a>icon URL</a> is not set.)
+  <li><p>如果 <var>options</var> 存在 <code>icon</code>，使用 <var>baseURL</var>
+  来<a lt="url parser">解析</a>之；解析无误时，设置 <var>notification</var> 的
+  <a>icon URL</a> 为该解析值。（否则<a>图标 URL</a>未设置。）
 
-  <li><p>If <var>options</var>'s <code>sound</code> is present,
-  <a lt="url parser">parse</a> it using <var>baseURL</var>, and if that does not
-  return failure, set <var>notification</var>'s <a>sound URL</a> to the return
-  value. (Otherwise <a>sound URL</a> is not set.)
+  <li><p>如果 <var>options</var> 存在 <code>sound</code>，使用 <var>baseURL</var>
+  <a lt="url parser">解析</a> 之； 解析无误时，设置 <var>notification</var> 的
+  <a>sound URL</a> 为该解析值。（否则<a>声音 URL</a>未设置。）
 
-  <li><p>If <var>options</var>'s <code>vibrate</code> is present,
-  <a>validate and normalize</a> it and set <var>notification</var>'s
-  <a>vibration pattern</a> to the return value. (Otherwise
-  <a>vibration pattern</a> is not set.)
+  <li><p>如果 <var>options</var> 存在 <code>vibrate</code>，<a>验证并规范化</a>之，
+  并设置 <var>notification</var> 的<a>振动模式</a>为该规范化值。
+ （否则<a>振动模式</a>未设置。）
 
-  <li><p>If <var>options</var>'s <code>renotify</code> is true, set
-  <var>notification</var>'s <a>renotify preference flag</a>.
+  <li><p>如果 <var>options</var> 的 <code>renotify</code> 为 true，设置
+  <var>notification</var> 的<a>重通知偏好标志</a>。
 
-  <li><p>If <var>options</var>'s <code>silent</code> is true, set
-  <var>notification</var>'s <a>silent preference flag</a>.
+  <li><p>如果 <var>options</var> 的 <code>silent</code> 为 true，设置
+  <var>notification</var> 的<a>静音偏好标志</a>。
 
-  <li><p>If <var>options</var>'s <code>noscreen</code> is true, set
-  <var>notification</var>'s <a>screen off preference flag</a>.
+  <li><p>如果 <var>options</var> 的 <code>noscreen</code> 为 true，设置
+  <var>notification</var> 的<a>屏幕关闭偏好标志</a>。
 
-  <li><p>If <var>options</var>'s <code>sticky</code> is true, set
-  <var>notification</var>'s <a>sticky preference flag</a>.
+  <li><p>如果 <var>options</var> 的 <code>sticky</code> 为 true，设置
+  <var>notification</var> 的<a>粘性偏好设置</a>。
 
-  <li><p>Return <var>notification</var>.
+  <li><p>返回 <var>notification</var>。
 </ol>
 
 
 <h3 id=lifetime-and-ui-integrations>Lifetime and UI integration</h3>
 
-<p>The user agent must keep a <dfn>list of notifications</dfn> that consists of
-zero or more <a lt="concept notification">notifications</a>.
+<p>用户代理必须保留一个由零或多个<a lt="concept notification">通知</a>组成的
+<dfn>通知列表</dfn>。
 
-<p>User agents should run the <a>close steps</a> for a
-<a>non-persistent notification</a> a couple of seconds after they have been
-created.
+<p>用户代理应该在创建<a>非持久通知</a>之后的几秒种内执行<a>关闭步骤</a>。
 
-<p>User agents should not display <a>non-persistent notification</a> in a
-platform's "notification center" (if available).
+<p>用户代理不应该在平台的“通知中心”（如果有的话）显示<a>非持久通知</a>。
 
-<p>User agents should persist <a>persistent notifications</a> until they are
-removed from the <a>list of notifications</a>.
+<p>用户代理应该保持<a>持久通知</a>，直至被移除出<a>通知列表</a>。
 
-<p class=example>A <a>persistent notification</a> could have the
-{{close()!!method}} method invoked of one of its {{Notification}} objects.
+<p class=example>A <a>持久通知</a>可通过其 {{Notification}} 对象来调用
+{{close()!!method}} 方法。
 
-<p>User agents should display <a>persistent notification</a> in a platform's
-"notification center" (if available).
+<p>用户代理应该在平台的“通知中心”（如果有的话）显示<a>持久通知</a>。
 
 
-<h3 id=permission-model>Permission model</h3>
+<h3 id=permission-model>许可模式</h3>
 
-<p><a lt="concept notification">Notifications</a> can only be displayed if the
-user (or user agent on behalf of the user) has granted <dfn>permission</dfn>.
-The <a>permission</a> to show <a lt="concept notification">notifications</a>
-for a given <a>origin</a> is one of three strings:
+<p>当且仅当用户（或用户代理）授予<dfn>许可</dfn>时，才能显示
+<a lt="concept notification">通知</a>。为给定<a>起源</a>显示
+<a lt="concept notification">通知</a>的<a>许可</a>是下面三个字符串之一：
 
 <dl>
   <dt>"<code>default</code>"
-  <dd><p>This is equivalent to "<code>denied</code>", but the user has made no
-  explicit choice thus far.
+  <dd><p>相当于 "<code>denied</code>"，但用户没有作出明确的选择。
 
   <dt>"<code>denied</code>"
-  <dd><p>This means the user does not want
-  <a lt="concept notification">notifications</a>.
+  <dd><p>意味着用户不希望被<a lt="concept notification">通知</a>。
 
   <dt>"<code>granted</code>"
-  <dd><p>This means <a lt="concept notification">notifications</a> can be
-  displayed.
+  <dd><p>意味着可以显示<a lt="concept notification">通知</a>。
 </dl>
 
-<p class=note>There is no equivalent to "<code>default</code>"
-meaning "<code>granted</code>". In that case
-"<code>granted</code>" is simply returned as there would be no reason
-for the application to ask for <a>permission</a>.
+<p class=note>"<code>default</code>"从不会等同于"<code>granted</code>"。如果那样
+的话，"<code>granted</code>"会被滥用，应用程序再也不必请求<a>许可</a>。
 
 
 <h3 id=direction>Direction</h3>
