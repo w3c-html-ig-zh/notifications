@@ -189,38 +189,30 @@ Indent: 2
 的话，"<code>granted</code>"会被滥用，应用程序再也不必请求<a>许可</a>。
 
 
-<h3 id=direction>Direction</h3>
+<h3 id=direction>方向</h3>
 
-<p>This section is written in terms equivalent to those used in the Rendering
-section of HTML. [[!HTML]]
+<p>本节所使用的术语等同于 HTML 规范中渲染部分所使用的。[[!HTML]]
 
-<!-- keep this in sync with
+<!-- 保持同步：
      https://html.spec.whatwg.org/multipage/rendering.html#text-rendered-in-native-user-interfaces -->
 
-<p>User agents are expected to honor the Unicode semantics of the text of a
-<a lt="concept notification">notification</a>'s
-<a lt="concept title">title</a> and <a>body</a>. Each is expected to be
-treated as an independent set of one or more bidirectional algorithm paragraphs
-when displayed, as defined by the bidirectional algorithm's rules P1, P2, and
-P3, including, for instance, supporting the paragraph-breaking behaviour of
-U+000A LINE FEED (LF) characters. For each paragraph of the
-<a lt="concept title">title</a> and <a>body</a>, the
-<a lt="concept notification">notification</a>'s
-<a lt="concept direction">direction</a> provides the higher-level override
-of rules P2 and P3 if it has a value other than "<code>auto</code>". [[!BIDI]]
+<p>期望用户代理使用 Unicode 语义来解析<a lt="concept notification">通知</a>的
+<a lt="concept title">标题</a>和<a>主题</a>中的文本。展示它们时，应视之为由双向
+算法规则P1、P2和P3所定义的一个或多个双向算法段落组成的独立集合，例如包括支持换行
+符 U+000A (LF) 带来的段落分割。对<a lt="concept title">标题</a>和<a>主题</a>中的
+每一段，<a lt="concept notification">通知</a>的<a lt="concept direction">方向</a>
+属性在其值非 "<code>auto</code>" 时，将覆盖双向算法P2和P3规则。 [[!BIDI]]
 
 
-<h3 id=language>Language</h3>
+<h3 id=language>语言</h3>
 
-<!-- keep this in sync with
+<!-- 保持同步：
      https://html.spec.whatwg.org/multipage/dom.html#attr-lang -->
 
-<p>The <a lt="concept notification">notification</a>'s
-<a lt="concept language">language</a> specifies the primary language for the
-<a lt="concept notification">notification</a>'s
-<a lt="concept title">title</a> and <a>body</a>. Its value is a valid
-BCP 47 language tag, or the empty string. The empty string indicates that the
-primary language is unknown. [[!LANG]]
+<p><a lt="concept notification">通知</a>的<a lt="concept language">语言</a>属性
+指定了<a lt="concept notification">通知</a>的<a lt="concept title">标题</a>和
+<a>主题</a>的主要语言。语言属性值要么是一个有效的 BCP 47 语言标记，要么是一个空
+字符串。空字符串表示主要语言是未知的。 [[!LANG]]
 
 
 <h3 id=resources>Resources</h3>
