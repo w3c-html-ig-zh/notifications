@@ -215,167 +215,146 @@ Indent: 2
 字符串。空字符串表示主要语言是未知的。 [[!LANG]]
 
 
-<h3 id=resources>Resources</h3>
+<h3 id=resources>资源</h3>
 
-<p>The <dfn>fetch steps</dfn> for a given
-<a lt="concept notification">notification</a> <var>notification</var> are:
+<p>对给定<a lt="concept notification">通知</a> <var>notification</var>，其
+<dfn>获取步骤/dfn>是：
 
 <ol>
   <!-- XXX https://www.w3.org/Bugs/Public/show_bug.cgi?id=24055 -->
-  <li><p>If the notification platform supports icons, <a>fetch</a>
-  <var>notification</var>'s <a>icon URL</a>, if <a>icon URL</a> is set.
+  <li><p>如果通知平台支持图标，并且通知设置了 <a>图标 URL</a>，则<a>获取</a>
+  <var>notification</var> 的 <a>图标 URL</a>。
 
-  <p>Then, <a>in parallel</a>:
+  <p>然后，<a>并行进行</a>：
 
   <ol>
-    <li><p>Wait for the <a>response</a>.
+    <li><p>等待<a>回应</a>。
 
-    <li><p>If the <a>response</a>'s <a>internal response</a>'s
-    <a lt="response type">type</a> is <i>default</i>, attempt to decode the
-    resource as image.
+    <li><p>如果<a>响应</a>的<a>内部反应</a>的<a lt="response type">类型</a>是
+    <i>默认的</i>，试图作为图像解码该资源。
 
-    <li><p>If the image format is supported, set <var>notification</var>'s
-    <a>icon resource</a> to the decoded resource. (Otherwise
-    <var>notification</var> has no <a>icon resource</a>.)
+    <li><p>如果平台支持该图像格式，设置 <var>notification</var> 的<a>图标资源</a>
+    为该解码后的资源。（否则 <var>notification</var> 没有 <a>图标资源</a>。）
   </ol>
 
-  <li><p>If the notification platform supports sounds, <a>fetch</a>
-  <var>notification</var>'s <a>sound URL</a>, if <a>sound URL</a> is set.
+  <li><p>如果通知平台支持声音，并且通知设置了<a>声音 URL</a>，则<a>获取</a>
+  <var>notification</var> 的 <a>声音 URL</a>。
 
-  <p>Then, <a>in parallel</a>:
+  <p>然后, <a>并行进行</a>：
 
   <ol>
-    <li><p>Wait for the <a>response</a>.
+    <li><p>等待<a>回应</a>。
 
-    <li><p>If the <a>response</a>'s <a>internal response</a>'s
-    <a lt="response type">type</a> is <i>default</i>, attempt to decode the
-    resource as sound.
+    <li><p>如果<a>响应</a>的<a>内部反应</a>的<a lt="response type">类型</a>是
+    <i>默认的</i>，试图作为声音解码该资源。
     <!-- XXX xref -->
 
-    <li><p>If the sound format is supported, set <var>notification</var>'s
-    <a>sound resource</a> to the decoded resource. (Otherwise
-    <var>notification</var> has no <a>sound resource</a>.)
+    <li><p>如果平台支持该声音格式，设置 <var>notification</var> 的
+    <a>声音资源</a> 为解码后的资源。（否则，<var>notification</var> 没有 
+    <a>sound 声音资源</a>。）
   </ol>
 </ol>
 
 
-<h3 id=showing-a-notification>Showing a notification</h3>
+<h3 id=showing-a-notification>显示通知</h3>
 
-<p>The <dfn>show steps</dfn> for a given
-<a lt="concept notification">notification</a> <var>notification</var> are:
+<p>对给定<a lt="concept notification">通知</a> <var>notification</var>，其
+<dfn>显示步骤</dfn>是：
 
 <ol>
-  <li><p>If there is a <a lt="concept notification">notification</a> in the
-  <a>list of notifications</a> whose <a>tag</a> is not the empty string and
-  equals <var>notification</var>'s <a>tag</a>, and whose
-  <a lt="concept origin">origin</a> is <a>same origin</a> with
-  <var>notification</var>'s <a lt="concept origin">origin</a>, run the
-  <a>replace steps</a> for that <a lt="concept notification">notification</a>
-  and <var>notification</var>, and then terminate these steps.
+  <li><p>如果<a>通知列表</a>里存在某一<a lt="concept notification">通知</a>，
+  其<a>标签</a>非空字符串且等于 <var>notification</var> 的<a>标签</a>，其
+  <a lt="concept origin">起源</a>和 <var>notification</var> 的
+  <a lt="concept origin">起源</a><a>同源</a> ，那么对该
+  <a lt="concept notification">通知</a>和 <var>notification</var> 执行
+  <a>更换步骤</a>，而后终止这些步骤。
 
-  <li><p>Otherwise, run the <a>display steps</a> for <var>notification</var>.
+  <li><p>否则，对 <var>notification</var> 执行<a>展示步骤</a>。
 </ol>
 
 
-<h3 id=activating-a-notification>Activating a notification</h3>
+<h3 id=activating-a-notification>激活通知</h3>
 
-<p>When a <a lt="concept notification">notification</a> <var>notification</var>
-is activated by the user, assuming the underlying notification platform supports
-activation, the user agent must (unless otherwise specified) run these steps:
+<p>当用户激活<a lt="concept notification">通知</a> <var>notification</var> 时，
+假设底层通知平台支持激活，用户代理必须（除非另有规定）执行这些步骤：
 
 <ol>
-  <li><p>If <var>notification</var> is a <a>persistent notification</a>, run
-  these substeps:
+  <li><p>如果 <var>notification</var> 是 <a>持久通知</a>，执行这些子步骤：
 
   <ol>
-    <li><p>Let <var>callback</var> be an algorithm that when invoked with a
-    <var>global</var>, <a lt="fire a service worker notification event named e">
-    fires a service worker notification event</a> named
-    <code>notificationclick</code> given <var>notification</var> on
-    <var>global</var>.
+    <li><p>设 <var>callback</var> 是 <var>global</var> 所调用的一种算法，对给定
+    <var>global</var> 上的 <var>notification</var>
+    <a lt="fire a service worker notification event named e">
+    触发服务线程通知事件</a> <code>notificationclick</code>。
 
-    <li><p>Then run <a>Handle Functional Event</a> with
-    <var>notification</var>'s <a>service worker registration</a> and
-    <var>callback</var>.
+    <li><p>而后对 <var>notification</var> 的<a>服务线程注册</a>和
+    <var>callback</var> 运行<a>处理功能事件</a>。
   </ol>
 
-  <li><p>Otherwise, <a>queue a task</a> to run these substeps:
+  <li><p>否则，<a>排队一个任务</a>来执行这些子步骤：
 
   <ol>
-    <li><p><a lt="concept event fire">Fire an event</a> named <code>click</code>
-    with its <code> <a lt="dom event cancelable">cancelable</a></code> attribute
-    initialized to true on the {{Notification}} object representing
-    <var>notification</var>.
+    <li><p>在表示 <var>notification</var> 的 {{Notification}} 对象上
+    <a lt="concept event fire">触发事件</a> <code>click</code>，其
+    <code><a lt="dom event cancelable">cancelable</a></code> 属性初始化为 true。
 
-    <p class="note">User agents are encouraged to make <code>
-    <a lt="dom window focus">window.focus()</a></code> work from within the
-    event listener for the event named <code>click</code>.
+    <p class="note">鼓励用户代理在 <code>click</code> 事件监听器中使用 <code>
+    <a lt="dom window focus">window.focus()</a></code>。
 
-    <li><p>If the <a lt="concept event">event</a>'s <a>canceled flag</a> is
-    unset, the user agent should bring the <var>notification</var>'s related
-    <a>browsing context</a>'s viewport into focus.
+    <li><p>如果没有设置该<a lt="concept event">事件</a>的<a>取消标志</a>，用户
+    代理应该聚焦 <var>notification</var> 相关的<a>浏览上下文</a>的视口。
   </ol>
 </ol>
 
-<p class="note">Throughout the web platform "activate" is intentionally
-misnamed as "click".
+<p class="note">纵观整个网络平台，“激活”被故意名不副实地称为“点击。
 
 
-<h3 id=closing-a-notification>Closing a notification</h3>
+<h3 id=closing-a-notification>关闭通知</h3>
 
-<p>When a <a lt="concept notification">notification</a> is closed, either by the
-underlying notification platform or by the user, the <a>close steps</a> for it
-must be run.
+<p>不论是底层通知平台还是用户，在关闭<a lt="concept notification">通知</a>时，
+都必须执行<a>关闭步骤</a>。
 
-<p>The <dfn>close steps</dfn> for a given <var>notification</var> are:
+<p>对给定 <var>notification</var>，其<dfn>关闭步骤</dfn>是:
 
 <ol>
-  <li><p>If <var>notification</var> is not in the <a>list of notifications</a>,
-  terminate these steps.
+  <li><p>如果 <var>notification</var> 不在<a>通知列表</a>中，终止这些步骤。
 
-  <li><p>Remove <var>notification</var> from the <a>list of notifications</a>.
+  <li><p>从<a>通知列表</a>中删除 <var>notification</var>。
 </ol>
 
 
-<h3 id=displaying-notification>Displaying notifications</h3>
+<h3 id=displaying-notification>展示通知</h3>
 
-<p>The <dfn>display steps</dfn> for a <var>given notification</var> are:
+<p>对给定 <var>notification</var>，其<dfn>展示步骤</dfn>是：
 
 <ol>
-  <li><p>Wait for any <a lt="fetch">fetches</a> to complete and
-  <var>notification</var>'s <a>icon resource</a> and <a>sound resource</a>
-  to be set (if any).
+  <li><p>等待所有的<a lt="fetch">获取</a>完成，并且如果有的话，设置好
+  <var>notification</var> 的 <a>图标资源</a>和<a>声音资源</a>。
 
-  <li><p>Display <var>notification</var> on the device (e.g. by calling the
-  appropriate notification platform).
+  <li><p>在设备上展示 <var>notification</var> （例如通过调用相应的通知平台）。
 
-  <p>At this point also play <var>notification</var>'s <a>sound resource</a>, if
-  any, and run <a>perform vibration</a> using <var>notification</var>'s
-  <a>vibration pattern</a>, if any.
+  <p>同时，如果有的话，播放 <var>notification</var> 的<a>声音资源</a>，使用
+  <var>notification</var> 的<a>震动模式</a>来<a>执行震动</a>。
 
-  <li><p>Append <var>notification</var> to the <a>list of notifications</a>.
+  <li><p>追加 <var>notification</var> 到<a>通知列表</a>。
 </ol>
 
 
-<h3 id=replacing-a-notification>Replacing a notification</h3>
+<h3 id=replacing-a-notification>更换通知</h3>
 
-<p>The <dfn>replace steps</dfn> for replacing an <var>old</var>
-<a lt="concept notification">notification</a> with a <var>new</var> one are:
+<p>将<a lt="concept notification">通知</a> <var>old</var> 更换为 <var>new</var>
+的<dfn>更换换步骤</dfn>是：
 
 <ol>
-  <li><p>Wait for any <a lt="fetch">fetches</a> to complete and
-  <var>notification</var>'s <a>icon resource</a> and <a>sound resource</a> to be
-  set (if any).
+  <li><p>等待所有的<a lt="fetch">获取</a>完成，并且如果有的话，设置好
+  <var>notification</var> 的 <a>图标资源</a>和<a>声音资源</a>。
 
-  <li><p>Replace <var>old</var> with <var>new</var>, in the same position, in
-  the <a>list of notifications</a>.
+  <li><p>在<a>通知列表</a>相同的位置，将 <var>old</var> 更换为 <var>new</var>。
 
-  <p>If the notification platform does not support replacement this requirement
-  may be addressed by running the <a>close steps</a> for <var>old</var> and then
-  running the <a>display steps</a> for <var>new</var>.
+  <p>如果通知平台不支持更换要求，那么可对 <var>old</var> 运行<a>关闭步骤</a>，
+  而后对 <var>new</var> 运行 <a>展示步骤</a>。
 
-  <p class="note">Notification platforms are strongly encouraged to support
-  native replacement. It is much nicer.
+  <p class="note">强烈建议通知平台支持原生更换，它要好得多。
 </ol>
 
 
