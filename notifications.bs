@@ -306,7 +306,7 @@ Indent: 2
   </ol>
 </ol>
 
-<p class="note">纵观整个网络平台，“激活”被故意名不副实地称为“点击。
+<p class="note">纵观整个网络平台，“激活”被故意名不副实地称为“点击”。
 
 
 <h3 id=closing-a-notification>关闭通知</h3>
@@ -514,121 +514,100 @@ enum NotificationDirection {
 <p>当调用 <dfn method dfn-for=Notification><code>close()</code></dfn> 方法时，
 必须对<a lt="concept notification">通知</a>执行<a>关闭步骤</a>。
 
-<p>The <dfn attribute dfn-for=Notification><code>title</code></dfn> attribute's
-getter must return the <a lt="concept notification">notification</a>'s
-<a lt="concept title">title</a>.
+<p>获取 <dfn attribute dfn-for=Notification><code>title</code></dfn> 属性值必须
+返回<a lt="concept notification">通知</a>的<a lt="concept title">标题</a>。
 
-<p>The <dfn attribute dfn-for=Notification><code>dir</code></dfn> attribute's
-getter must return the <a lt="concept notification">notification</a>'s
-<a lt="concept direction">direction</a>.
+<p>获取 <dfn attribute dfn-for=Notification><code>dir</code></dfn> 属性值必须
+返回<a lt="concept notification">通知</a>的<a lt="concept direction">方向</a>。
 
-<p>The <dfn attribute dfn-for=Notification><code>lang</code></dfn> attribute's
-getter must return the <a lt="concept notification">notification</a>'s
-<a lt="concept language">language</a>.
+<p>获取 <dfn attribute dfn-for=Notification><code>lang</code></dfn> 属性值必须
+返回<a lt="concept notification">通知</a>的<a lt="concept language">语言</a>。
 
-<p>The <dfn attribute dfn-for=Notification><code>body</code></dfn> attribute's
-getter must return the <a lt="concept notification">notification</a>'s
-<a>body</a>.
+<p>获取 <dfn attribute dfn-for=Notification><code>body</code></dfn> 属性值必须
+返回<a lt="concept notification">通知</a>的<a>主题</a>。
 
-<p>The <dfn attribute dfn-for=Notification><code>tag</code></dfn> attribute's
-getter must return the <a lt="concept notification">notification</a>'s <a>tag</a>.
+<p>获取 <dfn attribute dfn-for=Notification><code>tag</code></dfn> 属性值必须
+返回<a lt="concept notification">通知</a>的<a>标签</a>。
 
-<p>The <dfn attribute dfn-for=Notification><code>icon</code></dfn> attribute's
-getter must return the <a lt="concept notification">notification</a>'s
-<a>icon URL</a>, <a lt="url serializer">serialized</a>, and the empty string if
-there is no <a lt="concept notification">notification</a>'s <a>icon URL</a>
-otherwise.
+<p>获取 <dfn attribute dfn-for=Notification><code>icon</code></dfn> 属性值必须
+返回<a lt="concept notification">通知</a>的<a lt="url serializer">序列化</a>的
+<a>图标 URL</a>，或者当<a lt="concept notification">通知</a>没有<a>图标 URL</a>
+时返回空字符串。
 
-<p>The <dfn attribute dfn-for=Notification><code>sound</code></dfn> attribute's
-getter must return the <a lt="concept notification">notification</a>'s
-<a>sound URL</a>, <a lt="url serializer">serialized</a>, and the empty string if
-there is no <a lt="concept notification">notification</a>'s <a>sound URL</a>
-otherwise.
+<p>获取 <dfn attribute dfn-for=Notification><code>sound</code></dfn> 属性值必须
+返回<a lt="concept notification">通知</a>的<a lt="url serializer">序列化</a>的
+<a>声音 URL</a>，或者当<a lt="concept notification">通知</a>的<a>声音 URL</a>时
+返回空字符串。
 
-<p>The <dfn attribute dfn-for=Notification><code>renotify</code></dfn>
-attribute's getter must return the
-<a lt="concept notification">notification</a>'s <a>renotify preference flag</a>.
+<p>获取 <dfn attribute dfn-for=Notification><code>renotify</code></dfn>属性值必须
+返回<a lt="concept notification">通知</a>的<a>重通知偏好标志</a>。
 
-<p>The <dfn attribute dfn-for=Notification><code>silent</code></dfn> attribute's
-getter must return the <a lt="concept notification">notification</a>'s
-<a>silent preference flag</a>.
+<p>获取 <dfn attribute dfn-for=Notification><code>silent</code></dfn> 属性值必须
+返回<a lt="concept notification">通知</a>的<a>静音偏好标志</a>。
 
-<p>The <dfn attribute dfn-for=Notification><code>noscreen</code></dfn>
-attribute's getter must return the
-<a lt="concept notification">notification</a>'s
-<a>screen off preference flag</a>.
+<p>获取 <dfn attribute dfn-for=Notification><code>noscreen</code></dfn>属性值必须
+返回<a lt="concept notification">通知</a>的<a>屏幕关闭偏好标志</a>。
 
-<p>The <dfn attribute dfn-for=Notification><code>sticky</code></dfn> attribute's
-getter must return the <a lt="concept notification">notification</a>'s
-<a>sticky preference flag</a>.
+<p>获取 <dfn attribute dfn-for=Notification><code>sticky</code></dfn> 属性值必须
+返回<a lt="concept notification">通知</a>的<a>粘性偏好设置</a>。
 
-<p>The <dfn attribute dfn-for=Notification><code>data</code></dfn> attribute's
-getter must return a <a>structured clone</a> of
-<a lt="concept notification">notification</a>'s <a>data</a>.
+<p>获取 <dfn attribute dfn-for=Notification><code>data</code></dfn> 属性值必须
+返回<a lt="concept notification">通知</a>的<a>数据</a>的<a>结构化克隆</a>。
 
 
 <h3 id=examples>示例</h3>
 
-<h4 id=using-events>Using events</h4>
+<h4 id=using-events>使用事件</h4>
 
-<p>{{Notification}} objects dispatch events during their lifecycle, which
-developers can use to generate desired behaviors.
+<p>开发者可以使用 {{Notification}} 对象在其生命周期内发出的事件来产生所需要的行为。
 
-<p>The <code>click</code> event dispatches when the user activates a
-notification.
+<p>当用户激活一个通知时会触发 <code>click</code> 事件。
 
 <pre class=example>
 var not = new Notification("Gebrünn Gebrünn by Paul Kalkbrenner", { icon: "newsong.svg", tag: "song" })
 notification.onclick = function() { displaySong(this) }</pre>
 
 
-<h4 id=tags-example>Using the <code>tag</code> member for multiple instances</h4>
+<h4 id=tags-example>多实例使用 <code>tag</code> 成员</h4>
 
-<p>Web applications frequently operate concurrently in multiple instances, such
-as when a user opens a mail application in multiple browser tabs. Since the
-desktop is a shared resource, the notifications API provides a way for these
-instances to easily coordinate, by using the <code>tag</code> member.
+<p>Web 应用程序常常在多实例中进行并发操作，比如用户在多个浏览器标签中打开一个邮件
+应用程序。由于桌面是一种共享资源，通知 API 通过 <code>tag</code> 成员提供一种很
+容易协调的方式进行通知。
 
-<p>Notifications which represent the same conceptual event can be tagged in the
-same way, and when both are shown, the user will only receive one notification.
+<p>表示相同概念的事件可以使用相同的标记，当两个通知同时显示时，用户只会收到一个通知。
 
 <pre class=example>
-Instance 1                                   | Instance 2
+实例 1                                       | 实例 2
                                              |
-// Instance notices there is new mail.       |
+// 有个新邮件的通知实例                      |
 new Notification("New mail from John Doe",   |
                  { tag: 'message1' });       |
                                              |
-                                             |  // Slightly later, this instance notices
-                                             |  // there is new mail.
+                                             |  // 稍后该实例通知有个新邮件
                                              |  new Notification("New mail from John Doe",
                                              |                   { tag: 'message1' });</pre>
 
-<p>The result of this situation, if the user agent follows the algorithms here, is a
-<strong>single</strong> notification "New mail from John Doe".
+<p>如果用户代理遵循这里的算法，这种情况的结果就是，用户收到
+<strong>单一的</strong>通知 "New mail from John Doe"。
 
 
-<h4 id=using-the-tag-member-for-a-single-instance>Using the <code>tag</code> member for a single instance</h4>
+<h4 id=using-the-tag-member-for-a-single-instance>单实例使用 <code>tag</code> 成员</h4>
 
-<p>The <code>tag</code> member can also be used by a single instance of an
-application to keep its notifications as current as possible as state changes.
+<p>单实例应用程序也可以使用 <code>tag</code> 成员来尽可能保持其通知的最新状态变化。
 
-<p>For example, if Alice is using a chat application with Bob, and Bob sends
-multiple messages while Alice is idle, the application may prefer that Alice not
-see a desktop notification for each message.
+<p>例如，Alice 和 Bob 正在使用一个聊天应用程序，当 Alice 空闲时 Bob 发送了多条信息，
+应用程序可能更倾向于 Alice 没有看到每个消息的通知界面。
 
 <pre class=example>
-// Bob says "Hi"
+// Bob 说 "Hi"
 new Notification("Bob: Hi", { tag: 'chat_Bob' });
 
-// Bob says "Are you free this afternoon?"
+// Bob 说 "Are you free this afternoon?"
 new Notification("Bob: Hi / Are you free this afternoon?", { tag: 'chat_Bob' });</pre>
 
-<p>The result of this situation is a <i>single</i> notification; the second one
-replaces the first having the same tag. In a platform that queues notifications
-(first-in-first-out), using the tag allows the notification to also maintain its
-position in the queue. Platforms where the newest notifications are shown first,
-a similar result could be achieved using the {{close()!!method}} method.
+<p>这种情况的结果就是<i>单一的</i>通知；第二条消息会替换第一条消息，因为它们具有
+相同的标签。在该队列通知（先进先出）平台，使用标签允许通知保持其在队列中的位置。
+在总是最先显示最新通知的平台里，也可以使用 {{close()}} 方法实现类似的结果。
 
 
 <h2 id=service-worker-api>服务线程 API</h2>
@@ -658,88 +637,78 @@ partial interface ServiceWorkerGlobalScope {
 };
 </pre>
 
-<p>The <dfn method dfn-for=ServiceWorkerRegistration><code>
-showNotification(title, options)</code></dfn> method, when invoked, must run
-these steps:
+<p>当调用 <dfn method dfn-for=ServiceWorkerRegistration><code>
+showNotification(title, options)</code></dfn> 方法时，必须执行这些步骤：
 
 <ol>
-  <li><p>Let <var>promise</var> be a new promise.
+  <li><p>设 <var>promise</var> 是一新的先知。
 
-  <li><p>Let <var>notification</var> be the result of
-  <a lt="create a notification">creating a notification</a> given
-  <var>title</var> and <var>options</var>. Rethrow any exceptions.
+  <li><p>设 <var>notification</var> 是给定 <var>title</var> 和 <var>options</var>
+  所<a lt="create a notification">创建的通知</a>。重新抛出任何异常。
 
-  <li><p>If <a>context object</a>'s <a lt="dfn active worker">active worker</a>
-  is null, reject <var>promise</var> with a <code>TypeError</code> exception.
+  <li><p>如果<a>上下文对象</a>的<a lt="dfn active worker">活跃线程</a>是 null，
+  拒绝 <var>promise</var> 并抛出 <code>TypeError</code> 异常。
 
-  <li><p>Set <var>notification</var>'s <a>service worker registration</a> to the
-  <a>context object</a>.
+  <li><p>设置 <var>notification</var> 的<a>服务线程注册</a>为该<a>上下文对象</a>。
 
-  <li><p>Run these substeps <a>in parallel</a>:
+  <li><p><a>并行</a>执行这些子步骤：
 
   <ol>
-    <li><p>If <a>permission</a> for <var>notification</var>'s
-    <a lt="concept origin">origin</a> is not "<code>granted</code>", reject
-    <var>promise</var> with a <code>TypeError</code> exception, and terminate
-    these substeps.
+    <li><p>如果对 <var>notification</var> 的<a lt="concept origin">起源</a>的
+    <a>许可</a>不是 "<code>granted</code>"，拒绝 <var>promise</var> 并抛出
+    <code>TypeError</code> 异常，而后终止这些子步骤。
 
-    <li><p>Otherwise, resolve <var>promise</var> with undefined.
+    <li><p>否则，用 undefined 处理 <var>promise</var>。
 
-    <li><p>Run the <a>fetch steps</a> for <var>notification</var>.
+    <li><p>对 <var>notification</var> 执行 <a>获取步骤</a>。
 
-    <li><p>Run the <a>show steps</a> for <var>notification</var>.
+    <li><p>对 <var>notification</var> 执行 <a>显示步骤</a>。
   </ol>
 
-  <li><p>Return <var>promise</var>.
+  <li><p>返回 <var>promise</var>。
 </ol>
 
-<p>The <dfn method dfn-for=ServiceWorkerRegistration><code>
-getNotifications(filter)</code></dfn> method, when invoked, must run these
-steps:
+<p>当调用 <dfn method dfn-for=ServiceWorkerRegistration><code>
+getNotifications(filter)</code></dfn> 方法时，必须执行这些步骤：
 
 <ol>
-  <li><p>Let <var>promise</var> be a new promise.
+  <li><p>设 <var>promise</var> 是一新的先知。
 
-  <li><p>Run these substeps <a>in parallel</a>:
+  <li><p><a>并行</a>执行这些子步骤：
 
   <ol>
-    <li><p>Let <var>tag</var> be <var>filter</var>'s <code>tag</code>.
+    <li><p>设 <var>tag</var> 是 <var>filter</var> 的 <code>tag</code>。
 
-    <li><p>Let <var>notifications</var> be a list of all
-    <a lt="concept notification">notifications</a> in the
-    <a>list of notifications</a> whose <a lt="concept origin">origin</a> is the
-    <a>entry settings object</a>'s <a>origin</a>, whose
-    <a>service worker registration</a> is the <a>context object</a>, and whose
-    <a>tag</a>, if <var>tag</var> is not the empty string, is <var>tag</var>.
+    <li><p>设 <var>notifications</var> 是所有那些在<a>通知列表</a>中，
+    其<a lt="concept origin">起源</a>是<a>入口设置对象</a>的<a>起源</a>，
+    其<a>服务线程注册</a>是<a>上下文对象</a>，并且如果 <var>tag</var> 非空字符串
+    的话，其<a>标签</a>是 <var>tag</var>的<a lt="concept notification">通知</a>
+    所组成的一个列表。
 
-    <li><p>Let <var>objects</var> be an empty JavaScript array.
+    <li><p>设 <var>objects</var> 是一空的 JavaScript 数组。
 
-    <li><p>For each <a lt="concept notification">notification</a> in
-    <var>notifications</var>, in creation order, create a new {{Notification}}
-    object representing <a lt="concept notification">notification</a> and push
-    that object to <var>objects</var>.
+    <li><p>对 <var>notifications</var> 中每一个<a lt="concept notification">通知</a>，
+    按照其创建的顺序，来创建 {{Notification}} 对象表示<a lt="concept notification">
+    通知</a>并且将该对象压入 <var>objects</var>。
 
-    <li><p>Resolve <var>promise</var> with <var>objects</var>.
+    <li><p>用 <var>objects</var> 处理 <var>promise</var>。
   </ol>
 
-  <li><p>Return <var>promise</var>.
+  <li><p>返回 <var>promise</var>。
 </ol>
 
-<p class=note>This method returns zero or more new {{Notification}} objects
-which might represent the same underlying <a lt="concept notification">
-notification</a> of {{Notification}} objects already in existence.
+<p class=note>该方法返回零或多个新的 {{Notification}} 对象可能表示已然存在的相同
+底层 {{Notification}} 对象的<a lt="concept notification">通知</a>。
 
 <hr>
 
-<p>To <dfn>fire a service worker notification event named <var>e</var></dfn>
-given <var>notification</var>,
-<a lt="concept event fire">fire an event named <i>e</i></a> with an
-<a lt="concept event">event</a> using the {{NotificationEvent}} interface whose
-{{NotificationEvent/notification}} attribute is initialized to a new
-{{Notification}} object representing <var>notification</var>.
+<p>为给定 <var>notification</var> <dfn>触发一个名为 <var>e</var> 的服务线程通知
+事件</dfn>，使用 {{NotificationEvent/notification}} 属性初始化为新的 {{Notification}}
+对象表示 <var>notification</var> 的 {{NotificationEvent}} 接口来
+<a lt="concept event fire">触发一个名为 <var>e</var> 的服务线程通知
+事件</a>。
 
-<p>The {{NotificationEvent/notification}} attribute's getter must return the
-value it was initialized to.
+<p>获取 {{NotificationEvent/notification}} 属性值必须返回其所初始化的值。
 
 <p>{{ServiceWorkerGlobalScope}} 对象必须作为属性支持下列<a>事件处理程序</a>
 （及其相应的<a>事件处理事件类型</a>）。
