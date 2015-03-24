@@ -54,11 +54,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
   
    <div data-fill-with="spec-metadata">
     <dl>
-     <dt>Participate:
+     <dt>参与:
      <dd><span><a href="https://github.com/whatwg/notifications/issues/new">file a bug</a> (<a href="https://github.com/whatwg/notifications/issues">open bugs</a>)</span>
      <dd><span><a href="https://whatwg.org/mailing-list">whatwg@whatwg.org</a> (<a href="https://whatwg.org/mailing-list#specs">archives</a>)</span>
      <dd><span><a href="http://wiki.whatwg.org/wiki/IRC">IRC: #whatwg on Freenode</a></span>
-     <dt>Commits:
+     <dt>提交:
      <dd><span><a href="https://github.com/whatwg/notifications/commits">https://github.com/whatwg/notifications/commits</a></span>
      <dd><span><a href="https://twitter.com/notifyapi">@notifyapi</a></span>
     </dl>
@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   
 
   <div class="p-summary" data-fill-with="abstract">
-   <p>This standard defines an API to display notifications to the end user, typically outside the top-level browsing context’s viewport. It is designed to be compatible with existing notification systems, while remaining platform-independent.</p>
+   <p>该标准定义了一个 API 来给终端用户显示通知，通常显示在顶层浏览上下文视口。该 API 被设计成与现有的 Notifications 系统兼容，但依然是平台独立的。</p>
 
 </div>
   
@@ -82,39 +82,39 @@ document.addEventListener("DOMContentLoaded", function(event) {
   
 
 
-  <h2 class="no-num no-toc no-ref heading settled" id="contents"><span class="content">Table of Contents</span></h2>
+  <h2 class="no-num no-toc no-ref heading settled" id="contents"><span class="content">内容提纲</span></h2>
   
 
   <div data-fill-with="table-of-contents" role="navigation">
    <ul class="toc" role="directory">
-    <li><a href="#terminology"><span class="secno">1</span> <span class="content">Terminology</span></a>
+    <li><a href="#terminology"><span class="secno">1</span> <span class="content">术语</span></a>
     <li><a href="#notifications"><span class="secno">2</span> <span class="content">Notifications</span></a>
      <ul class="toc">
-      <li><a href="#lifetime-and-ui-integrations"><span class="secno">2.1</span> <span class="content">Lifetime and UI integration</span></a>
-      <li><a href="#permission-model"><span class="secno">2.2</span> <span class="content">Permission model</span></a>
-      <li><a href="#direction"><span class="secno">2.3</span> <span class="content">Direction</span></a>
-      <li><a href="#language"><span class="secno">2.4</span> <span class="content">Language</span></a>
-      <li><a href="#resources"><span class="secno">2.5</span> <span class="content">Resources</span></a>
-      <li><a href="#showing-a-notification"><span class="secno">2.6</span> <span class="content">Showing a notification</span></a>
-      <li><a href="#activating-a-notification"><span class="secno">2.7</span> <span class="content">Activating a notification</span></a>
-      <li><a href="#closing-a-notification"><span class="secno">2.8</span> <span class="content">Closing a notification</span></a>
-      <li><a href="#displaying-notification"><span class="secno">2.9</span> <span class="content">Displaying notifications</span></a>
-      <li><a href="#replacing-a-notification"><span class="secno">2.10</span> <span class="content">Replacing a notification</span></a>
+      <li><a href="#lifetime-and-ui-integrations"><span class="secno">2.1</span> <span class="content">生命周期与 UI 整合</span></a>
+      <li><a href="#permission-model"><span class="secno">2.2</span> <span class="content">许可模式</span></a>
+      <li><a href="#direction"><span class="secno">2.3</span> <span class="content">方向</span></a>
+      <li><a href="#language"><span class="secno">2.4</span> <span class="content">语言</span></a>
+      <li><a href="#resources"><span class="secno">2.5</span> <span class="content">资源</span></a>
+      <li><a href="#showing-a-notification"><span class="secno">2.6</span> <span class="content">显示通知</span></a>
+      <li><a href="#activating-a-notification"><span class="secno">2.7</span> <span class="content">激活通知</span></a>
+      <li><a href="#closing-a-notification"><span class="secno">2.8</span> <span class="content">关闭通知</span></a>
+      <li><a href="#displaying-notification"><span class="secno">2.9</span> <span class="content">展示通知</span></a>
+      <li><a href="#replacing-a-notification"><span class="secno">2.10</span> <span class="content">更换通知</span></a>
      </ul>
     <li><a href="#api"><span class="secno">3</span> <span class="content">API</span></a>
      <ul class="toc">
-      <li><a href="#garbage-collection"><span class="secno">3.1</span> <span class="content">Garbage collection</span></a>
-      <li><a href="#constructors"><span class="secno">3.2</span> <span class="content">Constructors</span></a>
-      <li><a href="#static-members"><span class="secno">3.3</span> <span class="content">Static members</span></a>
-      <li><a href="#object-members"><span class="secno">3.4</span> <span class="content">Object members</span></a>
-      <li><a href="#examples"><span class="secno">3.5</span> <span class="content">Examples</span></a>
+      <li><a href="#garbage-collection"><span class="secno">3.1</span> <span class="content">垃圾回收</span></a>
+      <li><a href="#constructors"><span class="secno">3.2</span> <span class="content">构造函数</span></a>
+      <li><a href="#static-members"><span class="secno">3.3</span> <span class="content">静态成员</span></a>
+      <li><a href="#object-members"><span class="secno">3.4</span> <span class="content">对象成员</span></a>
+      <li><a href="#examples"><span class="secno">3.5</span> <span class="content">示例</span></a>
        <ul class="toc">
-        <li><a href="#using-events"><span class="secno">3.5.1</span> <span class="content">Using events</span></a>
-        <li><a href="#tags-example"><span class="secno">3.5.2</span> <span class="content">Using the <code>tag</code> member for multiple instances</span></a>
-        <li><a href="#using-the-tag-member-for-a-single-instance"><span class="secno">3.5.3</span> <span class="content">Using the <code>tag</code> member for a single instance</span></a>
+        <li><a href="#using-events"><span class="secno">3.5.1</span> <span class="content">使用事件</span></a>
+        <li><a href="#tags-example"><span class="secno">3.5.2</span> <span class="content">多实例使用 <code>tag</code> 成员</span></a>
+        <li><a href="#using-the-tag-member-for-a-single-instance"><span class="secno">3.5.3</span> <span class="content">单实例使用 <code>tag</code> 成员</span></a>
        </ul>
      </ul>
-    <li><a href="#service-worker-api"><span class="secno">4</span> <span class="content">Service worker API</span></a>
+    <li><a href="#service-worker-api"><span class="secno">4</span> <span class="content">服务线程 API</span></a>
     <li><a href="#acknowledgments"><span class="secno"></span> <span class="content">Acknowledgments</span></a>
     <li><a href="#conformance"><span class="secno"></span> <span class="content">Conformance</span></a>
     <li><a href="#index"><span class="secno"></span> <span class="content">Index</span></a>
@@ -133,11 +133,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 
 
-   <h2 class="heading settled" data-level="1" id="terminology"><span class="secno">1. </span><span class="content">Terminology</span><a class="self-link" href="#terminology"></a></h2>
+   <h2 class="heading settled" data-level="1" id="terminology"><span class="secno">1. </span><span class="content">术语</span><a class="self-link" href="#terminology"></a></h2>
 
 
-   <p>Some terms used in this specification are defined in the DOM, Fetch,
-HTML, IDL, URL and Vibration API Standards.
+   <p>本规范中使用的一些术语取自DOM、Fetch、HTML、IDL、URL 和 振动 API 标准。
 <a data-link-type="biblio" href="#biblio-dom">[DOM]</a>
 <a data-link-type="biblio" href="#biblio-fetch">[FETCH]</a>
 <a data-link-type="biblio" href="#biblio-html">[HTML]</a>
@@ -150,81 +149,73 @@ HTML, IDL, URL and Vibration API Standards.
    <h2 class="heading settled" data-level="2" id="notifications"><span class="secno">2. </span><span class="content">Notifications</span><a class="self-link" href="#notifications"></a></h2>
 
 
-   <p>A <dfn data-dfn-type="dfn" data-lt="concept notification" data-noexport="" id="concept-notification">notification<a class="self-link" href="#concept-notification"></a></dfn> is an abstract
-representation of an occurrence, such as the delivery of a message.
+   <p><dfn data-dfn-type="dfn" data-lt="concept notification" data-noexport="" id="concept-notification">notification<a class="self-link" href="#concept-notification"></a></dfn> 是事件发生的抽象表示，如信息发出。
 
 </p>
-   <p>A <a data-link-type="dfn" href="#concept-notification">notification</a> has an associated
-<dfn data-dfn-type="dfn" data-lt="concept title" data-noexport="" id="concept-title">title<a class="self-link" href="#concept-title"></a></dfn> which is a DOMString.
+   <p>一个 <a data-link-type="dfn" href="#concept-notification">notification</a> 有一个关联的 DOMString 类型的
+<dfn data-dfn-type="dfn" data-lt="concept title" data-noexport="" id="concept-title">title<a class="self-link" href="#concept-title"></a></dfn>。
 
 </p>
-   <p>A <a data-link-type="dfn" href="#concept-notification">notification</a> has an associated
-<dfn data-dfn-type="dfn" data-noexport="" id="body">body<a class="self-link" href="#body"></a></dfn> which is a DOMString.
+   <p>一个 <a data-link-type="dfn" href="#concept-notification">notification</a> 有一个关联的 DOMString 类型的
+<dfn data-dfn-type="dfn" data-noexport="" id="body">body<a class="self-link" href="#body"></a></dfn>。
 
 </p>
-   <p>A <a data-link-type="dfn" href="#concept-notification">notification</a> has an associated
-<dfn data-dfn-type="dfn" data-lt="concept direction" data-noexport="" id="concept-direction">direction<a class="self-link" href="#concept-direction"></a></dfn> which is one of
-<i>auto</i>, <i>ltr</i>, and <i>rtl</i>.
+   <p>一个 <a data-link-type="dfn" href="#concept-notification">notification</a> 有一个关联的
+<dfn data-dfn-type="dfn" data-lt="concept direction" data-noexport="" id="concept-direction">direction<a class="self-link" href="#concept-direction"></a></dfn> 其值是
+<i>auto</i>, <i>ltr</i>, and <i>rtl</i>三者之一。
 
 </p>
-   <p>A <a data-link-type="dfn" href="#concept-notification">notification</a> has an associated
-<dfn data-dfn-type="dfn" data-lt="concept language" data-noexport="" id="concept-language">language<a class="self-link" href="#concept-language"></a></dfn> which is a DOMString
-representing either a valid BCP 47 language tag or the empty string.
+   <p>一个 <a data-link-type="dfn" href="#concept-notification">notification</a> 有一个关联的 DOMString 类型的
+<dfn data-dfn-type="dfn" data-lt="concept language" data-noexport="" id="concept-language">language<a class="self-link" href="#concept-language"></a></dfn> ，其值是一个有效的 BCP 47 语言标记或空字符串。
 
 </p>
-   <p>A <a data-link-type="dfn" href="#concept-notification">notification</a> has an associated
-<dfn data-dfn-type="dfn" data-noexport="" id="tag">tag<a class="self-link" href="#tag"></a></dfn> which is a DOMString.
+   <p>一个 <a data-link-type="dfn" href="#concept-notification">notification</a> 有一个关联的 DOMString 类型的
+<dfn data-dfn-type="dfn" data-noexport="" id="tag">tag<a class="self-link" href="#tag"></a></dfn>。
 
 </p>
-   <p>A <a data-link-type="dfn" href="#concept-notification">notification</a> has an associated
-<dfn data-dfn-type="dfn" data-noexport="" id="data">data<a class="self-link" href="#data"></a></dfn>.
+   <p>一个 <a data-link-type="dfn" href="#concept-notification">notification</a> 有一个关联的
+<dfn data-dfn-type="dfn" data-noexport="" id="data">data<a class="self-link" href="#data"></a></dfn>。
 
 </p>
-   <p>A <a data-link-type="dfn" href="#concept-notification">notification</a> has an associated
-<dfn data-dfn-type="dfn" data-lt="concept origin" data-noexport="" id="concept-origin">origin<a class="self-link" href="#concept-origin"></a></dfn>.
+   <p>一个 <a data-link-type="dfn" href="#concept-notification">notification</a> 有一个关联的
+<dfn data-dfn-type="dfn" data-lt="concept origin" data-noexport="" id="concept-origin">origin<a class="self-link" href="#concept-origin"></a></dfn>。
 
 </p>
-   <p>A <a data-link-type="dfn" href="#concept-notification">notification</a> has an associated
-<dfn data-dfn-type="dfn" data-noexport="" id="renotify-preference-flag">renotify preference flag<a class="self-link" href="#renotify-preference-flag"></a></dfn> which is initially unset. When set indicates
-that the end user should be alerted after the <a data-link-type="dfn" href="#replace-steps">replace steps</a> have run.
+   <p>一个 <a data-link-type="dfn" href="#concept-notification">notification</a> 有一个关联的未被设置的
+<dfn data-dfn-type="dfn" data-noexport="" id="renotify-preference-flag">renotify preference flag<a class="self-link" href="#renotify-preference-flag"></a></dfn>。 设置该标志表示运行<a data-link-type="dfn" href="#replace-steps">replace steps</a>后，最终用户会被警告。
 
 </p>
-   <p>A <a data-link-type="dfn" href="#concept-notification">notification</a> has an associated
-<dfn data-dfn-type="dfn" data-noexport="" id="silent-preference-flag">silent preference flag<a class="self-link" href="#silent-preference-flag"></a></dfn> which is initially unset. When set indicates
-that no sounds or vibrations should be made.
+   <p>一个 <a data-link-type="dfn" href="#concept-notification">notification</a> 有一个关联的未被设置的
+<dfn data-dfn-type="dfn" data-noexport="" id="silent-preference-flag">silent preference flag<a class="self-link" href="#silent-preference-flag"></a></dfn>。设置该标志表示不接收声音或者振动通知。
 
 </p>
-   <p>A <a data-link-type="dfn" href="#concept-notification">notification</a> has an associated
-<dfn data-dfn-type="dfn" data-noexport="" id="screen-off-preference-flag">screen off preference flag<a class="self-link" href="#screen-off-preference-flag"></a></dfn> which is initially unset. When set
-indicates that the screen of the device should not be enabled.
+   <p>一个 <a data-link-type="dfn" href="#concept-notification">notification</a> 有一个关联的未被设置的
+<dfn data-dfn-type="dfn" data-noexport="" id="screen-off-preference-flag">screen off preference flag<a class="self-link" href="#screen-off-preference-flag"></a></dfn>。设置该标志表示设备屏幕不会被启用。
+
 
 </p>
-   <p>A <a data-link-type="dfn" href="#concept-notification">notification</a> has an associated
-<dfn data-dfn-type="dfn" data-noexport="" id="sticky-preference-flag">sticky preference flag<a class="self-link" href="#sticky-preference-flag"></a></dfn> which is initially unset. When set indicates
-that the end user should not be able to easily clear the
-<a data-link-type="dfn" href="#concept-notification">notification</a> <span class="note" role="note">Only makes sense
-for <a data-link-type="dfn" href="#persistent-notification">persistent notifications</a>.
+   <p>一个 <a data-link-type="dfn" href="#concept-notification">notification</a> 有一个关联的未被设置的
+<dfn data-dfn-type="dfn" data-noexport="" id="sticky-preference-flag">sticky preference flag<a class="self-link" href="#sticky-preference-flag"></a></dfn>。设置该标志表示最终用户将不能很容易地清除
+<a data-link-type="dfn" href="#concept-notification">notification</a> <span class="note" role="note">仅适用于<a data-link-type="dfn" href="#persistent-notification">persistent notifications</a>.
 
 </span></p>
-   <p>A <a data-link-type="dfn" href="#concept-notification">notification</a> <em>can</em> have an
-associated <dfn data-dfn-type="dfn" data-noexport="" id="icon-url">icon URL<a class="self-link" href="#icon-url"></a></dfn>, <dfn data-dfn-type="dfn" data-noexport="" id="icon-resource">icon resource<a class="self-link" href="#icon-resource"></a></dfn>, <dfn data-dfn-type="dfn" data-noexport="" id="sound-url">sound URL<a class="self-link" href="#sound-url"></a></dfn>,
-<dfn data-dfn-type="dfn" data-noexport="" id="sound-resource">sound resource<a class="self-link" href="#sound-resource"></a></dfn>, <dfn data-dfn-type="dfn" data-noexport="" id="vibration-pattern">vibration pattern<a class="self-link" href="#vibration-pattern"></a></dfn>, and
+   <p>一个 <a data-link-type="dfn" href="#concept-notification">notification</a> <em>可以</em> 有关联的 <dfn data-dfn-type="dfn" data-noexport="" id="icon-url">icon URL<a class="self-link" href="#icon-url"></a></dfn>, <dfn data-dfn-type="dfn" data-noexport="" id="icon-resource">icon resource<a class="self-link" href="#icon-resource"></a></dfn>, <dfn data-dfn-type="dfn" data-noexport="" id="sound-url">sound URL<a class="self-link" href="#sound-url"></a></dfn>,
+<dfn data-dfn-type="dfn" data-noexport="" id="sound-resource">sound resource<a class="self-link" href="#sound-resource"></a></dfn>, <dfn data-dfn-type="dfn" data-noexport="" id="vibration-pattern">vibration pattern<a class="self-link" href="#vibration-pattern"></a></dfn>，和
 <dfn data-dfn-type="dfn" data-noexport="" id="service-worker-registration">service worker registration<a class="self-link" href="#service-worker-registration"></a></dfn>.
 
 </p>
-   <p class="note" role="note">Developers are encouraged to not convey information through an
-icon, sound, or vibration pattern that is not otherwise accessible to the end
-user.
+   <p class="note" role="note">不鼓励开发者通过图标、声音或振动模式来给最终用户传达信息；除非这些信息
+是最终用户可以访问的。
 
 </p>
-   <p>A <dfn data-dfn-type="dfn" data-noexport="" id="non_persistent-notification">non-persistent notification<a class="self-link" href="#non_persistent-notification"></a></dfn> is a
-<a data-link-type="dfn" href="#concept-notification">notification</a> without an associated
-<a data-link-type="dfn" href="#service-worker-registration">service worker registration</a>.
+   <p>一个 <dfn data-dfn-type="dfn" data-noexport="" id="non_persistent-notification">non-persistent notification<a class="self-link" href="#non_persistent-notification"></a></dfn> 是没有关联
+<a data-link-type="dfn" href="#service-worker-registration">service worker registration</a> 的
+<a data-link-type="dfn" href="#concept-notification">notification</a>。
 
 </p>
-   <p>A <dfn data-dfn-type="dfn" data-noexport="" id="persistent-notification">persistent notification<a class="self-link" href="#persistent-notification"></a></dfn> is a
-<a data-link-type="dfn" href="#concept-notification">notification</a> with an associated
-<a data-link-type="dfn" href="#service-worker-registration">service worker registration</a>.
+   <p>一个 <dfn data-dfn-type="dfn" data-noexport="" id="persistent-notification">persistent notification<a class="self-link" href="#persistent-notification"></a></dfn> 是关联了 
+<a data-link-type="dfn" href="#service-worker-registration">service worker registration</a> 的
+<a data-link-type="dfn" href="#concept-notification">notification</a>。
 
 
 
@@ -232,156 +223,144 @@ user.
    <hr>
 
 
-   <p>To <dfn data-dfn-type="dfn" data-noexport="" id="create-a-notification">create a notification<a class="self-link" href="#create-a-notification"></a></dfn>, given a <var>title</var> and
-<var>options, run these steps:
+   <p>为 <dfn data-dfn-type="dfn" data-noexport="" id="create-a-notification">create a notification<a class="self-link" href="#create-a-notification"></a></dfn>，给定一个<var>title</var> 和 
+<var>options</var>，执行这些步骤：
 
 </var></p>
    <ol>
   
     <li>
-     <p>Let <var>notification</var> be a new
+     <p>设 <var>notification</var> 是一个新的
   <a data-link-type="dfn" href="#concept-notification">notification</a>.
 
   </p>
     <li>
-     <p>If <var>options</var>’s <code>silent</code> is true, and either
-  <var>options</var>’s <code>sound</code> is present or <var>options</var>’s
-  <code>vibrate</code> is present, <a data-link-type="dfn" href="http://heycam.github.io/webidl/#dfn-throw">throw</a> a <code>TypeError</code>
-  exception.
+     <p>如果 <var>options</var> 的 <code>silent</code> 为 true,  那么
+  <var>options</var> 的 <code>sound</code> 出现时或者 <var>options</var> 的
+  <code>vibrate</code> 出现时， <a data-link-type="dfn" href="http://heycam.github.io/webidl/#dfn-throw">throw</a> 一个 <code>TypeError</code>
+ 异常。
 
   </p>
     <li>
-     <p>If <var>options</var>’s <code>renotify</code> is true and
-  <var>options</var>’s <code>tag</code> is the empty string, <a data-link-type="dfn" href="http://heycam.github.io/webidl/#dfn-throw">throw</a> a
-  <code>TypeError</code> exception.
+     <p>如果 <var>options</var> 的 <code>renotify</code> 为 true 并且
+  <var>options</var> 的 <code>tag</code> 为空字符串，那么 <a data-link-type="dfn" href="http://heycam.github.io/webidl/#dfn-throw">throw</a> 一个
+  <code>TypeError</code> 异常。
 
   </p>
     <li>
-     <p>Set <var>notification</var>’s <a data-link-type="dfn" href="#data">data</a> to a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#structured-clone">structured clone</a>
-  of <var>options</var>’s <code>data</code>. Rethrow any exceptions.
+     <p>设置 <var>notification</var> 的 <a data-link-type="dfn" href="#data">data</a> 为一个<var>options</var> 的 <code>data</code>的 <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#structured-clone">structured clone</a>。重新抛出任何异常。
 
   </p>
     <li>
-     <p>Set <var>notification</var>’s <a data-link-type="dfn" href="#concept-title">title</a>
-  to <var>options</var>’s <code>title</code>.
+     <p>设置 <var>notification</var> 的 <a data-link-type="dfn" href="#concept-title">title</a>
+  为 <var>options</var> 的 <code>title</code>.
 
   </p>
     <li>
-     <p>Set <var>notification</var>’s
-  <a data-link-type="dfn" href="#concept-direction">direction</a> to <var>options</var>’s
+     <p>设置 <var>notification</var> 的
+  <a data-link-type="dfn" href="#concept-direction">direction</a> 为 <var>options</var> 的
   <code>dir</code>.
 
   </p>
     <li>
-     <p>If <var>options</var>’s <code>lang</code> is either a valid BCP 47
-  language tag or the empty string, set <var>notification</var>’s
-  <a data-link-type="dfn" href="#concept-language">language</a> to <var>options</var>’s
-  <code>lang</code>, and set it to the empty string otherwise. <a data-link-type="biblio" href="#biblio-lang">[LANG]</a>
+     <p>如果 <var>options</var> 的 <code>lang</code> 是一个有效的 BCP 47 
+  语言标记或空字符串, 设置 <var>notification</var> 的
+  <a data-link-type="dfn" href="#concept-language">language</a> 为 <var>options</var>的
+  <code>lang</code>；否则将之设置为空字符串。 <a data-link-type="biblio" href="#biblio-lang">[LANG]</a>
 
   </p>
     <li>
-     <p>Set <var>notification</var>’s <a data-link-type="dfn" href="#concept-origin">origin</a> to the
-  <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#entry-settings-object">entry settings object</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#origin">origin</a>.
+     <p>设置 <var>notification</var> 的 <a data-link-type="dfn" href="#concept-origin">origin</a> 为
+  <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#entry-settings-object">entry settings object</a> 的 <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#origin">origin</a>。
 
   </p>
     <li>
-     <p>Set <var>notification</var>’s <a data-link-type="dfn" href="#body">body</a> to <var>options</var>’s
+     <p>设置 <var>notification</var> 的 <a data-link-type="dfn" href="#body">body</a> 为 <var>options</var> 的
   <code>body</code>.
 
   </p>
     <li>
-     <p>Set <var>notification</var>’s <a data-link-type="dfn" href="#tag">tag</a> to <var>options</var>’s
+     <p>设置<var>notification</var> 的 <a data-link-type="dfn" href="#tag">tag</a> 为 <var>options</var> 的
   <code>tag</code>.
 
   </p>
     <li>
-     <p>Let <var>baseURL</var> be the API base URL specified by the
-  <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#entry-settings-object">entry settings object</a>. <span class="XXX">Or incumbent?</span>
+     <p>设 <var>baseURL</var> 为
+  <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#entry-settings-object">entry settings object</a> 指定的 API 基础 URL。 <span class="XXX">或现任？</span>
 
   </p>
     <li>
-     <p>If <var>options</var>’s <code>icon</code> is present,
-  <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-parser">parse</a> it using <var>baseURL</var>, and if that does not
-  return failure, set <var>notification</var>’s <a data-link-type="dfn" href="#icon-url">icon URL</a> to the return
-  value. (Otherwise <a data-link-type="dfn" href="#icon-url">icon URL</a> is not set.)
+     <p>如果 <var>options</var> 存在 <code>icon</code> ，用 
+   <var>baseURL</var> <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-parser">parse</a> 它；解析无误时，设置 <var>notification</var> 的 <a data-link-type="dfn" href="#icon-url">icon URL</a> 为该解析值。（否则 <a data-link-type="dfn" href="#icon-url">icon URL</a> 未设置。）
 
   </p>
     <li>
-     <p>If <var>options</var>’s <code>sound</code> is present,
-  <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-parser">parse</a> it using <var>baseURL</var>, and if that does not
-  return failure, set <var>notification</var>’s <a data-link-type="dfn" href="#sound-url">sound URL</a> to the return
-  value. (Otherwise <a data-link-type="dfn" href="#sound-url">sound URL</a> is not set.)
+     <p>如果 <var>options</var> 的 <code>sound</code> 存在，
+  用 
+   <var>baseURL</var> <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-parser">parse</a> 它；解析无误时，设置 <var>notification</var> 的 <a data-link-type="dfn" href="#sound-url">sound URL</a> 为该解析值。（否则 <a data-link-type="dfn" href="#sound-url">sound URL</a> 未设置。）
 
   </p>
     <li>
-     <p>If <var>options</var>’s <code>vibrate</code> is present,
-  <a data-link-type="dfn" href="http://www.w3.org/TR/vibration/#dfn-validate-and-normalize">validate and normalize</a> it and set <var>notification</var>’s
-  <a data-link-type="dfn" href="#vibration-pattern">vibration pattern</a> to the return value. (Otherwise
-  <a data-link-type="dfn" href="#vibration-pattern">vibration pattern</a> is not set.)
+     <p>如果 <var>options</var> 的 <code>vibrate</code> 存在，
+  <a data-link-type="dfn" href="http://www.w3.org/TR/vibration/#dfn-validate-and-normalize">validate and normalize</a> 它，
+  并设置 <var>notification</var> 的
+  <a data-link-type="dfn" href="#vibration-pattern">vibration pattern</a> 为该规范化值。
+ （否则<a data-link-type="dfn" href="#vibration-pattern">vibration pattern</a>未设置。）
 
   </p>
     <li>
-     <p>If <var>options</var>’s <code>renotify</code> is true, set
-  <var>notification</var>’s <a data-link-type="dfn" href="#renotify-preference-flag">renotify preference flag</a>.
+     <p>如果 <var>options</var> 的 <code>renotify</code> 为 true，设置
+  <var>notification</var> 的 <a data-link-type="dfn" href="#renotify-preference-flag">renotify preference flag</a>.
 
   </p>
     <li>
-     <p>If <var>options</var>’s <code>silent</code> is true, set
-  <var>notification</var>’s <a data-link-type="dfn" href="#silent-preference-flag">silent preference flag</a>.
+     <p>如果 <var>options</var> 的 <code>silent</code> 为 true，设置
+  <var>notification</var> 的 <a data-link-type="dfn" href="#silent-preference-flag">silent preference flag</a>.
 
   </p>
     <li>
-     <p>If <var>options</var>’s <code>noscreen</code> is true, set
-  <var>notification</var>’s <a data-link-type="dfn" href="#screen-off-preference-flag">screen off preference flag</a>.
+     <p>如果 <var>options</var> 的 <code>noscreen</code> 为 true，设置
+  <var>notification</var> 的 <a data-link-type="dfn" href="#screen-off-preference-flag">screen off preference flag</a>.
 
   </p>
     <li>
-     <p>If <var>options</var>’s <code>sticky</code> is true, set
-  <var>notification</var>’s <a data-link-type="dfn" href="#sticky-preference-flag">sticky preference flag</a>.
+     <p>如果 <var>options</var> 的 <code>sticky</code> 为 true，设置
+  <var>notification</var> 的 <a data-link-type="dfn" href="#sticky-preference-flag">sticky preference flag</a>.
 
   </p>
     <li>
-     <p>Return <var>notification</var>.
+     <p>返回 <var>notification</var>.
 </p></ol>
 
 
 
-   <h3 class="heading settled" data-level="2.1" id="lifetime-and-ui-integrations"><span class="secno">2.1. </span><span class="content">Lifetime and UI integration</span><a class="self-link" href="#lifetime-and-ui-integrations"></a></h3>
+   <h3 class="heading settled" data-level="2.1" id="lifetime-and-ui-integrations"><span class="secno">2.1. </span><span class="content">生命周期与 UI 整合</span><a class="self-link" href="#lifetime-and-ui-integrations"></a></h3>
 
 
-   <p>The user agent must keep a <dfn data-dfn-type="dfn" data-noexport="" id="list-of-notifications">list of notifications<a class="self-link" href="#list-of-notifications"></a></dfn> that consists of
-zero or more <a data-link-type="dfn" href="#concept-notification">notifications</a>.
-
-</p>
-   <p>User agents should run the <a data-link-type="dfn" href="#close-steps">close steps</a> for a
-<a data-link-type="dfn" href="#non_persistent-notification">non-persistent notification</a> a couple of seconds after they have been
-created.
+   <p>用户代理必须保留一个由零或多个 <a data-link-type="dfn" href="#concept-notification">notifications</a> 组成的 <dfn data-dfn-type="dfn" data-noexport="" id="list-of-notifications">list of notifications<a class="self-link" href="#list-of-notifications"></a></dfn>。
 
 </p>
-   <p>User agents should not display <a data-link-type="dfn" href="#non_persistent-notification">non-persistent notification</a> in a
-platform’s "notification center" (if available).
+   <p>用户代理应该在创建 <a data-link-type="dfn" href="#non_persistent-notification">non-persistent notification</a> 之后的几秒种内执行<a data-link-type="dfn" href="#close-steps">close steps</a>。
 
 </p>
-   <p>User agents should persist <a data-link-type="dfn" href="#persistent-notification">persistent notifications</a> until they are
-removed from the <a data-link-type="dfn" href="#list-of-notifications">list of notifications</a>.
+   <p>用户代理不应该在平台的“通知中心”（如果有的话）显示 <a data-link-type="dfn" href="#non_persistent-notification">non-persistent notification</a>。
 
 </p>
-   <p class="example">A <a data-link-type="dfn" href="#persistent-notification">persistent notification</a> could have the
-<code class="idl"><a class="idl-code" data-link-type="method" href="#dom-notification-close">close()</a></code> method invoked of one of its <code class="idl"><a data-link-type="idl" href="#notification">Notification</a></code> objects.
+   <p>用户代理应该保持 <a data-link-type="dfn" href="#persistent-notification">persistent notifications</a>，直至被移除出<a data-link-type="dfn" href="#list-of-notifications">list of notifications</a>。
 
 </p>
-   <p>User agents should display <a data-link-type="dfn" href="#persistent-notification">persistent notification</a> in a platform’s
-"notification center" (if available).
+   <p class="example">一个 <a data-link-type="dfn" href="#persistent-notification">persistent notification</a> 可通过其 <code class="idl"><a data-link-type="idl" href="#notification">Notification</a></code> 对象来调用 
+<code class="idl"><a class="idl-code" data-link-type="method" href="#dom-notification-close">close()</a></code> 方法。
+
+</p>
+   <p>用户代理应该在平台的“通知中心”（如果有的话）显示 <a data-link-type="dfn" href="#persistent-notification">persistent notification</a> 。
 
 
 </p>
-   <h3 class="heading settled" data-level="2.2" id="permission-model"><span class="secno">2.2. </span><span class="content">Permission model</span><a class="self-link" href="#permission-model"></a></h3>
+   <h3 class="heading settled" data-level="2.2" id="permission-model"><span class="secno">2.2. </span><span class="content">许可模式</span><a class="self-link" href="#permission-model"></a></h3>
 
 
-   <p><a data-link-type="dfn" href="#concept-notification">Notifications</a> can only be displayed if the
-user (or user agent on behalf of the user) has granted <dfn data-dfn-type="dfn" data-noexport="" id="permission">permission<a class="self-link" href="#permission"></a></dfn>.
-The <a data-link-type="dfn" href="#permission">permission</a> to show <a data-link-type="dfn" href="#concept-notification">notifications</a>
-for a given <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#origin">origin</a> is one of three strings:
+   <p><a data-link-type="dfn" href="#concept-notification">Notifications</a> 当且仅当被用户（或用户代理）授予<dfn data-dfn-type="dfn" data-noexport="" id="permission">permission<a class="self-link" href="#permission"></a></dfn>时，才能被显示。 为给定 <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#origin">origin</a> 显示 <a data-link-type="dfn" href="#concept-notification">notifications</a> 的 <a data-link-type="dfn" href="#permission">permission</a> 是下面三个字符串之一：
 
 </p>
    <dl>
@@ -389,133 +368,123 @@ for a given <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage
     <dt>"<code>default</code>"
   
     <dd>
-     <p>This is equivalent to "<code>denied</code>", but the user has made no
-  explicit choice thus far.
+     <p>相当于 "<code>denied</code>"，但用户没有作出明确的选择。
 
   </p>
     <dt>"<code>denied</code>"
   
     <dd>
-     <p>This means the user does not want
+     <p>意味着用户不希望被
   <a data-link-type="dfn" href="#concept-notification">notifications</a>.
 
   </p>
     <dt>"<code>granted</code>"
   
     <dd>
-     <p>This means <a data-link-type="dfn" href="#concept-notification">notifications</a> can be
-  displayed.
+     <p>意味着可以显示 <a data-link-type="dfn" href="#concept-notification">notifications</a>。
 </p></dl>
 
 
-   <p class="note" role="note">There is no equivalent to "<code>default</code>"
-meaning "<code>granted</code>". In that case
-"<code>granted</code>" is simply returned as there would be no reason
-for the application to ask for <a data-link-type="dfn" href="#permission">permission</a>.
+   <p class="note" role="note">"<code>default</code>" 从不会等同于 "<code>granted</code>"。如果那样
+的话，
+"<code>granted</code>" 会被滥用，应用程序再也不必请求 <a data-link-type="dfn" href="#permission">permission</a>。
 
 
 </p>
-   <h3 class="heading settled" data-level="2.3" id="direction"><span class="secno">2.3. </span><span class="content">Direction</span><a class="self-link" href="#direction"></a></h3>
+   <h3 class="heading settled" data-level="2.3" id="direction"><span class="secno">2.3. </span><span class="content">方向</span><a class="self-link" href="#direction"></a></h3>
 
 
-   <p>This section is written in terms equivalent to those used in the Rendering
-section of HTML. <a data-link-type="biblio" href="#biblio-html">[HTML]</a>
+   <p>本节所使用的术语等同于 HTML 规范中渲染部分所使用的。 <a data-link-type="biblio" href="#biblio-html">[HTML]</a>
 
 
 
 </p>
-   <p>User agents are expected to honor the Unicode semantics of the text of a
-<a data-link-type="dfn" href="#concept-notification">notification</a>’s
-<a data-link-type="dfn" href="#concept-title">title</a> and <a data-link-type="dfn" href="#body">body</a>. Each is expected to be
-treated as an independent set of one or more bidirectional algorithm paragraphs
-when displayed, as defined by the bidirectional algorithm’s rules P1, P2, and
-P3, including, for instance, supporting the paragraph-breaking behaviour of
-U+000A LINE FEED (LF) characters. For each paragraph of the
-<a data-link-type="dfn" href="#concept-title">title</a> and <a data-link-type="dfn" href="#body">body</a>, the
-<a data-link-type="dfn" href="#concept-notification">notification</a>’s
-<a data-link-type="dfn" href="#concept-direction">direction</a> provides the higher-level override
-of rules P2 and P3 if it has a value other than "<code>auto</code>". <a data-link-type="biblio" href="#biblio-bidi">[BIDI]</a>
+   <p>期望用户代理使用 Unicode 语义来解析
+<a data-link-type="dfn" href="#concept-notification">notification</a> 的
+<a data-link-type="dfn" href="#concept-title">title</a> 和 <a data-link-type="dfn" href="#body">body</a>中的文本。展示它们时，应视之为由双向
+算法规则P1、P2和P3所定义的一个或多个双向算法段落组成的独立集合，例如包括支持换行
+符 U+000A (LF) 带来的段落分割。对
+<a data-link-type="dfn" href="#concept-title">title</a> 和 <a data-link-type="dfn" href="#body">body</a>中的
+每一段，<a data-link-type="dfn" href="#concept-notification">notification</a> 的
+<a data-link-type="dfn" href="#concept-direction">direction</a>
+属性在其值非 "<code>auto</code>"时，将覆盖双向算法P2和P3规则。 <a data-link-type="biblio" href="#biblio-bidi">[BIDI]</a>
 
 
 </p>
-   <h3 class="heading settled" data-level="2.4" id="language"><span class="secno">2.4. </span><span class="content">Language</span><a class="self-link" href="#language"></a></h3>
+   <h3 class="heading settled" data-level="2.4" id="language"><span class="secno">2.4. </span><span class="content">语言</span><a class="self-link" href="#language"></a></h3>
 
 
 
 
-   <p>The <a data-link-type="dfn" href="#concept-notification">notification</a>’s
-<a data-link-type="dfn" href="#concept-language">language</a> specifies the primary language for the
-<a data-link-type="dfn" href="#concept-notification">notification</a>’s
-<a data-link-type="dfn" href="#concept-title">title</a> and <a data-link-type="dfn" href="#body">body</a>. Its value is a valid
-BCP 47 language tag, or the empty string. The empty string indicates that the
-primary language is unknown. <a data-link-type="biblio" href="#biblio-lang">[LANG]</a>
+   <p><a data-link-type="dfn" href="#concept-notification">notification</a> 的
+<a data-link-type="dfn" href="#concept-language">language</a> 属性指定了 
+<a data-link-type="dfn" href="#concept-notification">notification</a> 的
+<a data-link-type="dfn" href="#concept-title">title</a> 和 <a data-link-type="dfn" href="#body">body</a>的主要语言。语言属性值要么是一个有效的 BCP 47 语言标记，要么是一个空
+字符串。空字符串表示主要语言是未知的。 <a data-link-type="biblio" href="#biblio-lang">[LANG]</a>
 
 
 </p>
-   <h3 class="heading settled" data-level="2.5" id="resources"><span class="secno">2.5. </span><span class="content">Resources</span><a class="self-link" href="#resources"></a></h3>
+   <h3 class="heading settled" data-level="2.5" id="resources"><span class="secno">2.5. </span><span class="content">资源</span><a class="self-link" href="#resources"></a></h3>
 
 
-   <p>The <dfn data-dfn-type="dfn" data-noexport="" id="fetch-steps">fetch steps<a class="self-link" href="#fetch-steps"></a></dfn> for a given
-<a data-link-type="dfn" href="#concept-notification">notification</a> <var>notification</var> are:
+   <p>对给定 
+<a data-link-type="dfn" href="#concept-notification">notification</a> <var>notification</var> 的 <dfn data-dfn-type="dfn" data-noexport="" id="fetch-steps">fetch steps<a class="self-link" href="#fetch-steps"></a></dfn> 是：
 
 </p>
    <ol>
   
   
     <li>
-     <p>If the notification platform supports icons, <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-fetch">fetch</a>
-  <var>notification</var>’s <a data-link-type="dfn" href="#icon-url">icon URL</a>, if <a data-link-type="dfn" href="#icon-url">icon URL</a> is set.
+     <p>如果通知平台支持图标，并且通知设置了<a data-link-type="dfn" href="#icon-url">icon URL</a>，则 <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-fetch">fetch</a>
+  <var>notification</var> 的 <a data-link-type="dfn" href="#icon-url">icon URL</a>。
 
   </p>
-     <p>Then, <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">in parallel</a>:
+     <p>然后， <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">in parallel</a>:
 
   </p>
      <ol>
     
       <li>
-       <p>Wait for the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-response">response</a>.
+       <p>等待 <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-response">response</a>.
 
     </p>
       <li>
-       <p>If the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-response">response</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-internal-response">internal response</a>’s
-    <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-response-type">type</a> is <i>default</i>, attempt to decode the
-    resource as image.
+       <p>如果 <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-response">response</a> 的 <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-internal-response">internal response</a> 的
+    <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-response-type">type</a> 是 <i>default</i>，试图作为图像解码该资源。
 
     </p>
       <li>
-       <p>If the image format is supported, set <var>notification</var>’s
-    <a data-link-type="dfn" href="#icon-resource">icon resource</a> to the decoded resource. (Otherwise
-    <var>notification</var> has no <a data-link-type="dfn" href="#icon-resource">icon resource</a>.)
+       <p>如果平台支持该图像格式，设置 <var>notification</var> 的
+    <a data-link-type="dfn" href="#icon-resource">icon resource</a> 为该解码后的资源。（否则 <var>notification</var> 没有 <a data-link-type="dfn" href="#icon-resource">icon resource</a>。）
   </p>
      </ol>
      
 
   
     <li>
-     <p>If the notification platform supports sounds, <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-fetch">fetch</a>
-  <var>notification</var>’s <a data-link-type="dfn" href="#sound-url">sound URL</a>, if <a data-link-type="dfn" href="#sound-url">sound URL</a> is set.
+     <p>如果通知平台支持声音，并且通知设置了 <a data-link-type="dfn" href="#sound-url">sound URL</a> ，则 <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-fetch">fetch</a>
+  <var>notification</var>的 <a data-link-type="dfn" href="#sound-url">sound URL</a> 。
 
   </p>
-     <p>Then, <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">in parallel</a>:
+     <p>然后, <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">in parallel</a>：
 
   </p>
      <ol>
     
       <li>
-       <p>Wait for the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-response">response</a>.
+       <p>等待 <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-response">response</a>。
 
     </p>
       <li>
-       <p>If the <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-response">response</a>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-internal-response">internal response</a>’s
-    <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-response-type">type</a> is <i>default</i>, attempt to decode the
-    resource as sound.
+       <p>如果 <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-response">response</a> 的 <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-internal-response">internal response</a> 的
+    <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-response-type">type</a> 是 <i>default</i>，试图作为声音解码该资源。
     
 
     </p>
       <li>
-       <p>If the sound format is supported, set <var>notification</var>’s
-    <a data-link-type="dfn" href="#sound-resource">sound resource</a> to the decoded resource. (Otherwise
-    <var>notification</var> has no <a data-link-type="dfn" href="#sound-resource">sound resource</a>.)
+       <p>如果平台支持该声音格式，设置 <var>notification</var> 的
+    <a data-link-type="dfn" href="#sound-resource">sound resource</a> 为解码后的资源。（否则，
+    <var>notification</var> 没有 <a data-link-type="dfn" href="#sound-resource">sound resource</a>。）
   </p>
      </ol>
      
@@ -523,179 +492,158 @@ primary language is unknown. <a data-link-type="biblio" href="#biblio-lang">[LAN
 
 
 
-   <h3 class="heading settled" data-level="2.6" id="showing-a-notification"><span class="secno">2.6. </span><span class="content">Showing a notification</span><a class="self-link" href="#showing-a-notification"></a></h3>
+   <h3 class="heading settled" data-level="2.6" id="showing-a-notification"><span class="secno">2.6. </span><span class="content">显示通知</span><a class="self-link" href="#showing-a-notification"></a></h3>
 
 
-   <p>The <dfn data-dfn-type="dfn" data-noexport="" id="show-steps">show steps<a class="self-link" href="#show-steps"></a></dfn> for a given
-<a data-link-type="dfn" href="#concept-notification">notification</a> <var>notification</var> are:
+   <p>对给定 <a data-link-type="dfn" href="#concept-notification">notification</a> <var>notification</var> ，其<dfn data-dfn-type="dfn" data-noexport="" id="show-steps">show steps<a class="self-link" href="#show-steps"></a></dfn>是：
 
 </p>
    <ol>
   
     <li>
-     <p>If there is a <a data-link-type="dfn" href="#concept-notification">notification</a> in the
-  <a data-link-type="dfn" href="#list-of-notifications">list of notifications</a> whose <a data-link-type="dfn" href="#tag">tag</a> is not the empty string and
-  equals <var>notification</var>’s <a data-link-type="dfn" href="#tag">tag</a>, and whose
-  <a data-link-type="dfn" href="#concept-origin">origin</a> is <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#same-origin">same origin</a> with
-  <var>notification</var>’s <a data-link-type="dfn" href="#concept-origin">origin</a>, run the
-  <a data-link-type="dfn" href="#replace-steps">replace steps</a> for that <a data-link-type="dfn" href="#concept-notification">notification</a>
-  and <var>notification</var>, and then terminate these steps.
+     <p>如果 <a data-link-type="dfn" href="#list-of-notifications">list of notifications</a> 里存在某一 <a data-link-type="dfn" href="#concept-notification">notification</a>，
+  其 <a data-link-type="dfn" href="#tag">tag</a> 非空字符串且等于 <var>notification</var>的 <a data-link-type="dfn" href="#tag">tag</a>，其
+  <a data-link-type="dfn" href="#concept-origin">origin</a> 和 
+  <var>notification</var> 的 <a data-link-type="dfn" href="#concept-origin">origin</a> 是 <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#same-origin">same origin</a>， 那么对该 <a data-link-type="dfn" href="#concept-notification">notification</a> 执行 
+  <a data-link-type="dfn" href="#replace-steps">replace steps</a>，而后终止这些步骤。
 
   </p>
     <li>
-     <p>Otherwise, run the <a data-link-type="dfn" href="#display-steps">display steps</a> for <var>notification</var>.
+     <p>否则，对 <var>notification</var> 执行 <a data-link-type="dfn" href="#display-steps">display steps</a>。
 </p></ol>
 
 
 
-   <h3 class="heading settled" data-level="2.7" id="activating-a-notification"><span class="secno">2.7. </span><span class="content">Activating a notification</span><a class="self-link" href="#activating-a-notification"></a></h3>
+   <h3 class="heading settled" data-level="2.7" id="activating-a-notification"><span class="secno">2.7. </span><span class="content">激活通知</span><a class="self-link" href="#activating-a-notification"></a></h3>
 
 
-   <p>When a <a data-link-type="dfn" href="#concept-notification">notification</a> <var>notification</var>
-is activated by the user, assuming the underlying notification platform supports
-activation, the user agent must (unless otherwise specified) run these steps:
+   <p>当用户激活 <a data-link-type="dfn" href="#concept-notification">notification</a> <var>notification</var> 时，假设底层通知平台支持激活，用户代理必须（除非另有规定）执行这些步骤：
 
 </p>
    <ol>
   
     <li>
-     <p>If <var>notification</var> is a <a data-link-type="dfn" href="#persistent-notification">persistent notification</a>, run
-  these substeps:
+     <p>如果 <var>notification</var> 是 <a data-link-type="dfn" href="#persistent-notification">persistent notification</a>，执行这些子步骤：
 
   </p>
      <ol>
     
       <li>
-       <p>Let <var>callback</var> be an algorithm that when invoked with a
-    <var>global</var>, <a data-link-type="dfn" href="#fire-a-service-worker-notification-event-named-e">
-    fires a service worker notification event</a> named
-    <code>notificationclick</code> given <var>notification</var> on
-    <var>global</var>.
+       <p>设 <var>callback</var> 是 <var>global</var> 所调用的一种算法，对给定 
+    <var>global</var> 上的 <var>notification</var> <a data-link-type="dfn" href="#fire-a-service-worker-notification-event-named-e">
+    fires a service worker notification event</a> 命名为 
+    <code>notificationclick</code>。
 
     </p>
       <li>
-       <p>Then run <a data-link-type="dfn" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/#handle-functional-event">Handle Functional Event</a> with
-    <var>notification</var>’s <a data-link-type="dfn" href="#service-worker-registration">service worker registration</a> and
-    <var>callback</var>.
+       <p>而后对 
+    <var>notification</var> 的 <a data-link-type="dfn" href="#service-worker-registration">service worker registration</a> 和
+    <var>callback</var> 运行 <a data-link-type="dfn" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/#handle-functional-event">Handle Functional Event</a>。
   </p>
      </ol>
      
 
   
     <li>
-     <p>Otherwise, <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task">queue a task</a> to run these substeps:
+     <p>否则，<a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task">queue a task</a> 来执行这些子步骤：
 
   </p>
      <ol>
     
       <li>
-       <p><a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire">Fire an event</a> named <code>click</code>
-    with its <code> <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#dom-event-cancelable">cancelable</a></code> attribute
-    initialized to true on the <code class="idl"><a data-link-type="idl" href="#notification">Notification</a></code> object representing
-    <var>notification</var>.
+       <p>在表示
+    <var>notification</var> 的 <code class="idl"><a data-link-type="idl" href="#notification">Notification</a></code> 对象上 <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire">Fire an event</a> 属性为 <code>click</code>，其 <code> <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#dom-event-cancelable">cancelable</a></code> 属性初始化为 true。
 
     </p>
-       <p class="note" role="note">User agents are encouraged to make <code>
-    <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#dom-window-focus">window.focus()</a></code> work from within the
-    event listener for the event named <code>click</code>.
+       <p class="note" role="note">鼓励用户代理在 <code>click</code> 事件监听器中使用 <code>
+    <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#dom-window-focus">window.focus()</a></code>。
 
     </p>
       <li>
-       <p>If the <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event">event</a>’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#canceled-flag">canceled flag</a> is
-    unset, the user agent should bring the <var>notification</var>’s related
-    <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context">browsing context</a>’s viewport into focus.
+       <p>如果没有设置该 <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event">event</a> 的 <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#canceled-flag">canceled flag</a>，用户
+    代理应该聚焦 <var>notification</var> 相关的
+    <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#browsing-context">browsing context</a> 的 viewport。
   </p>
      </ol>
      
 </ol>
 
 
-   <p class="note" role="note">Throughout the web platform "activate" is intentionally
-misnamed as "click".
+   <p class="note" role="note">纵观整个网络平台，“激活”被故意名不副实地称为“点击”。
 
 
 </p>
-   <h3 class="heading settled" data-level="2.8" id="closing-a-notification"><span class="secno">2.8. </span><span class="content">Closing a notification</span><a class="self-link" href="#closing-a-notification"></a></h3>
+   <h3 class="heading settled" data-level="2.8" id="closing-a-notification"><span class="secno">2.8. </span><span class="content">关闭通知</span><a class="self-link" href="#closing-a-notification"></a></h3>
 
 
-   <p>When a <a data-link-type="dfn" href="#concept-notification">notification</a> is closed, either by the
-underlying notification platform or by the user, the <a data-link-type="dfn" href="#close-steps">close steps</a> for it
-must be run.
+   <p>不论是底层通知平台还是用户，在关闭 <a data-link-type="dfn" href="#concept-notification">notification</a> 时，
+都必须执行 <a data-link-type="dfn" href="#close-steps">close steps</a>。
 
 </p>
-   <p>The <dfn data-dfn-type="dfn" data-noexport="" id="close-steps">close steps<a class="self-link" href="#close-steps"></a></dfn> for a given <var>notification</var> are:
+   <p>对给定 <var>notification</var> ，其 <dfn data-dfn-type="dfn" data-noexport="" id="close-steps">close steps<a class="self-link" href="#close-steps"></a></dfn> 是:
 
 </p>
    <ol>
   
     <li>
-     <p>If <var>notification</var> is not in the <a data-link-type="dfn" href="#list-of-notifications">list of notifications</a>,
-  terminate these steps.
+     <p>如果 <var>notification</var> 不在 <a data-link-type="dfn" href="#list-of-notifications"> 中，终止这些步骤。
 
   </p>
     <li>
-     <p>Remove <var>notification</var> from the <a data-link-type="dfn" href="#list-of-notifications">list of notifications</a>.
+     <p>从 <a data-link-type="dfn" href="#list-of-notifications">list of notifications</a> 中删除 <var>notification</var>。
 </p></ol>
 
 
 
-   <h3 class="heading settled" data-level="2.9" id="displaying-notification"><span class="secno">2.9. </span><span class="content">Displaying notifications</span><a class="self-link" href="#displaying-notification"></a></h3>
+   <h3 class="heading settled" data-level="2.9" id="displaying-notification"><span class="secno">2.9. </span><span class="content">展示通知</span><a class="self-link" href="#displaying-notification"></a></h3>
 
 
-   <p>The <dfn data-dfn-type="dfn" data-noexport="" id="display-steps">display steps<a class="self-link" href="#display-steps"></a></dfn> for a <var>given notification</var> are:
+   <p>对给定 <var>given notification</var>，其<dfn data-dfn-type="dfn" data-noexport="" id="display-steps">display steps<a class="self-link" href="#display-steps"></a></dfn> 是：
 
 </p>
    <ol>
   
     <li>
-     <p>Wait for any <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-fetch">fetches</a> to complete and
-  <var>notification</var>’s <a data-link-type="dfn" href="#icon-resource">icon resource</a> and <a data-link-type="dfn" href="#sound-resource">sound resource</a>
-  to be set (if any).
+     <p>等待所有的 <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-fetch">fetches</a> 完成，并且如果有的话，设置好
+  <var>notification</var> 的 <a data-link-type="dfn" href="#icon-resource">icon resource</a> 和 <a data-link-type="dfn" href="#sound-resource">sound resource</a>。
 
   </p>
     <li>
-     <p>Display <var>notification</var> on the device (e.g. by calling the
-  appropriate notification platform).
+     <p>在设备上展示 <var>notification</var>（例如通过调用相应的通知平台）。
 
   </p>
-     <p>At this point also play <var>notification</var>’s <a data-link-type="dfn" href="#sound-resource">sound resource</a>, if
-  any, and run <a data-link-type="dfn" href="http://www.w3.org/TR/vibration/#dfn-perform-vibration">perform vibration</a> using <var>notification</var>’s
-  <a data-link-type="dfn" href="#vibration-pattern">vibration pattern</a>, if any.
+     <p>同时，如果有的话，播放 <var>notification</var> 的 <a data-link-type="dfn" href="#sound-resource">sound resource</a>，使用 <var>notification</var> 的 <a data-link-type="dfn" href="#vibration-pattern">vibration pattern</a> 
+ <a data-link-type="dfn" href="http://www.w3.org/TR/vibration/#dfn-perform-vibration">perform vibration</a>。
 
   </p>
     <li>
-     <p>Append <var>notification</var> to the <a data-link-type="dfn" href="#list-of-notifications">list of notifications</a>.
+     <p>追加 <var>notification</var> 到 <a data-link-type="dfn" href="#list-of-notifications">list of notifications</a>。
 </p></ol>
 
 
 
-   <h3 class="heading settled" data-level="2.10" id="replacing-a-notification"><span class="secno">2.10. </span><span class="content">Replacing a notification</span><a class="self-link" href="#replacing-a-notification"></a></h3>
+   <h3 class="heading settled" data-level="2.10" id="replacing-a-notification"><span class="secno">2.10. </span><span class="content">更换通知</span><a class="self-link" href="#replacing-a-notification"></a></h3>
 
 
-   <p>The <dfn data-dfn-type="dfn" data-noexport="" id="replace-steps">replace steps<a class="self-link" href="#replace-steps"></a></dfn> for replacing an <var>old</var>
-<a data-link-type="dfn" href="#concept-notification">notification</a> with a <var>new</var> one are:
+   <p>将 <var>old</var>
+<a data-link-type="dfn" href="#concept-notification">notification</a> 更换为 <var>new</var> 到， <dfn data-dfn-type="dfn" data-noexport="" id="replace-steps">replace steps<a class="self-link" href="#replace-steps"></a></dfn> 是：
 
 </p>
    <ol>
   
     <li>
-     <p>Wait for any <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-fetch">fetches</a> to complete and
-  <var>notification</var>’s <a data-link-type="dfn" href="#icon-resource">icon resource</a> and <a data-link-type="dfn" href="#sound-resource">sound resource</a> to be
-  set (if any).
+     <p>等待所有的 <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-fetch">fetches</a> 完成，并且如果有的话，设置好
+  <var>notification</var> 的 <a data-link-type="dfn" href="#icon-resource">icon resource</a> 和 <a data-link-type="dfn" href="#sound-resource">sound resource</a>。
 
   </p>
     <li>
-     <p>Replace <var>old</var> with <var>new</var>, in the same position, in
-  the <a data-link-type="dfn" href="#list-of-notifications">list of notifications</a>.
+     <p>在 <a data-link-type="dfn" href="#list-of-notifications">list of notifications</a> 相同的位置，将 <var>old</var> 更换为 <var>new</var>。
 
   </p>
-     <p>If the notification platform does not support replacement this requirement
-  may be addressed by running the <a data-link-type="dfn" href="#close-steps">close steps</a> for <var>old</var> and then
-  running the <a data-link-type="dfn" href="#display-steps">display steps</a> for <var>new</var>.
+     <p>如果通知平台不支持更换要求，那么可对 <var>old</var> 运行 <a data-link-type="dfn" href="#close-steps">close steps</a> 而后对 <var>new</var> 运行 <a data-link-type="dfn" href="#display-steps">display steps</a>。
 
   </p>
-     <p class="note" role="note">Notification platforms are strongly encouraged to support
-  native replacement. It is much nicer.
+     <p class="note" role="note">强烈建议通知平台支持原生更换，它要好得多。
 </p></ol>
 
 
@@ -719,7 +667,7 @@ interface <dfn class="idl-code" data-dfn-type="interface" data-export="" data-gl
   readonly attribute DOMString <a class="idl-code" data-global-name="Notification<interface>/tag<attribute>" data-link-type="attribute" data-readonly="" data-type="DOMString " href="#dom-notification-tag">tag</a>;
   readonly attribute USVString <a class="idl-code" data-global-name="Notification<interface>/icon<attribute>" data-link-type="attribute" data-readonly="" data-type="USVString " href="#dom-notification-icon">icon</a>;
   readonly attribute USVString <a class="idl-code" data-global-name="Notification<interface>/sound<attribute>" data-link-type="attribute" data-readonly="" data-type="USVString " href="#dom-notification-sound">sound</a>;
-  // vibrate not exposed for now; see bug 23682
+  // 目前还没有暴露振动属性；见 bug 23682
   readonly attribute boolean <a class="idl-code" data-global-name="Notification<interface>/renotify<attribute>" data-link-type="attribute" data-readonly="" data-type="boolean " href="#dom-notification-renotify">renotify</a>;
   readonly attribute boolean <a class="idl-code" data-global-name="Notification<interface>/silent<attribute>" data-link-type="attribute" data-readonly="" data-type="boolean " href="#dom-notification-silent">silent</a>;
   readonly attribute boolean <a class="idl-code" data-global-name="Notification<interface>/noscreen<attribute>" data-link-type="attribute" data-readonly="" data-type="boolean " href="#dom-notification-noscreen">noscreen</a>;
@@ -760,140 +708,132 @@ enum <dfn class="idl-code" data-dfn-type="enum" data-export="" data-global-name=
 </pre>
 
 
-   <p>A <a data-link-type="dfn" href="#non_persistent-notification">non-persistent notification</a> is represented one <code class="idl"><a data-link-type="idl" href="#notification">Notification</a></code>
-objects and can be created through <code class="idl"><a data-link-type="idl" href="#notification">Notification</a></code>'s
-<a href="#dom-notification-notification">constructor</a>.
+   <p>一个 <a data-link-type="dfn" href="#non_persistent-notification">non-persistent notification</a> 由一个 <code class="idl"><a data-link-type="idl" href="#notification">Notification</a></code>
+对象来表示，并且可以通过 <code class="idl"><a data-link-type="idl" href="#notification">Notification</a></code> 的
+<a href="#dom-notification-notification">constructor</a>来创建
 
 </p>
-   <p>A <a data-link-type="dfn" href="#persistent-notification">persistent notification</a> is represented by zero or more
-<code class="idl"><a data-link-type="idl" href="#notification">Notification</a></code> objects can be created through the
-<code class="idl"><a data-link-type="idl" href="#dom-serviceworkerregistration-shownotification">showNotification()</a></code> method.
+   <p>一个 <a data-link-type="dfn" href="#persistent-notification">persistent notification</a> 由零或多个
+<code class="idl"><a data-link-type="idl" href="#notification">Notification</a></code> 对象来表示，并且可以通过
+<code class="idl"><a data-link-type="idl" href="#dom-serviceworkerregistration-shownotification">showNotification()</a></code> 方法来创建。
 
 </p>
-   <h3 class="heading settled" data-level="3.1" id="garbage-collection"><span class="secno">3.1. </span><span class="content">Garbage collection</span><a class="self-link" href="#garbage-collection"></a></h3>
+   <h3 class="heading settled" data-level="3.1" id="garbage-collection"><span class="secno">3.1. </span><span class="content">垃圾回收</span><a class="self-link" href="#garbage-collection"></a></h3>
 
 
-   <p>A <code class="idl"><a data-link-type="idl" href="#notification">Notification</a></code> object must not be garbage collected while its
-corresponding <a data-link-type="dfn" href="#concept-notification">notification</a> is in the
-<a data-link-type="dfn" href="#list-of-notifications">list of notifications</a> and the <code class="idl"><a data-link-type="idl" href="#notification">Notification</a></code> object in question has an
-<a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-listener">event listener</a> whose <b>type</b> is
-<code>click</code> or <code>error</code>.
+   <p>当 <code class="idl"><a data-link-type="idl" href="#notification">Notification</a></code> 对象相对应的 <a data-link-type="dfn" href="#concept-notification">notification</a> 在
+<a data-link-type="dfn" href="#list-of-notifications">list of notifications</a> 时，该对象有一个 <b>type</b> 为 
+<code>click</code> 或 <code>error</code> 的 <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-listener">event listener</a>，那么该 <code class="idl"><a data-link-type="idl" href="#notification">Notification</a></code> 对象
+一定不能被垃圾回收。
 
 </p>
-   <h3 class="heading settled" data-level="3.2" id="constructors"><span class="secno">3.2. </span><span class="content">Constructors</span><a class="self-link" href="#constructors"></a></h3>
+   <h3 class="heading settled" data-level="3.2" id="constructors"><span class="secno">3.2. </span><span class="content">构造函数</span><a class="self-link" href="#constructors"></a></h3>
 
 
-   <p>The <dfn class="idl-code" data-dfn-for="Notification" data-dfn-type="constructor" data-export="" data-lt="Notification()" id="dom-notification-notification"><code>Notification(title, options)
-</code><a class="self-link" href="#dom-notification-notification"></a></dfn> constructor, when invoked, must (unless otherwise indicated) run
-these steps:
+   <p>当调用 <dfn class="idl-code" data-dfn-for="Notification" data-dfn-type="constructor" data-export="" data-lt="Notification()" id="dom-notification-notification"><code>Notification(title, options)
+</code><a class="self-link" href="#dom-notification-notification"></a></dfn> 构造函数时，必须（除非另有说明）执行这些步骤：
 
 </p>
    <ol>
   
     <li>
-     <p>If <var>options</var>’s <code>sticky</code> is present, <a data-link-type="dfn" href="http://heycam.github.io/webidl/#dfn-throw">throw</a>
-  a <code>TypeError</code> exception.
+     <p>如果 <var>options</var> 存在 <code>sticky</code> ，<a data-link-type="dfn" href="http://heycam.github.io/webidl/#dfn-throw">throw</a> <code>TypeError</code> 异常。
 
   </p>
     <li>
-     <p>If <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#entry-settings-object">entry settings object</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#global-object">global object</a> is a
-  <code class="idl"><a data-link-type="idl" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/#serviceworkerglobalscope">ServiceWorkerGlobalScope</a></code> object, <a data-link-type="dfn" href="http://heycam.github.io/webidl/#dfn-throw">throw</a> a
-  <code>TypeError</code> exception.
+     <p>如果 <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#entry-settings-object">entry settings object</a> 的 <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#global-object">global object</a> 是一个
+  <code class="idl"><a data-link-type="idl" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/#serviceworkerglobalscope">ServiceWorkerGlobalScope</a></code> 对象， <a data-link-type="dfn" href="http://heycam.github.io/webidl/#dfn-throw">throw</a> 一个 
+  <code>TypeError</code> 异常。
 
   </p>
     <li>
-     <p>Let <var>notification</var> be the result of
-  <a data-link-type="dfn" href="#create-a-notification">creating a notification</a> given
-  <var>title</var> and <var>options</var>. Rethrow any exceptions.
+     <p>设 <var>notification</var> 是给定
+  <var>title</var> 和 <var>options</var> 之后
+  <a data-link-type="dfn" href="#create-a-notification">creating a notification</a> 的。重新抛出任一异常。
 
   </p>
     <li>
-     <p>Let <var>n</var> be a new <code class="idl"><a data-link-type="idl" href="#notification">Notification</a></code> object associated with
-  <var>notification</var>.
+     <p>设 <var>n</var> 是与 
+  <var>notification</var> 相关联的新 <code class="idl"><a data-link-type="idl" href="#notification">Notification</a></code> .
 
   </p>
     <li>
-     <p>Run these substeps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">in parallel</a>:
+     <p> <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">in parallel</a> 执行这些子步骤：
 
   </p>
      <ol>
     
       <li>
-       <p>If <a data-link-type="dfn" href="#permission">permission</a> for <var>notification</var>’s
-    <a data-link-type="dfn" href="#concept-origin">origin</a> is not "<code>granted</code>",
-    <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task">queue a task</a> to <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire">fire an event</a> named
-    <code>error</code> on <var>n</var>, and terminate these substeps.
+       <p>如果对 <var>notification</var> 的 <a data-link-type="dfn" href="#concept-origin">origin</a> 的 <a data-link-type="dfn" href="#permission">permission</a> 不是 "<code>granted</code>"，在 <var>n</var> 上 
+    <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task">queue a task</a> 来 <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire">fire an event</a> 命名为
+    <code>error</code>，并终止这些步骤。
 
     </p>
       <li>
-       <p>Run the <a data-link-type="dfn" href="#fetch-steps">fetch steps</a> for <var>notification</var>.
+       <p>对 <var>notification</var> 执行 <a data-link-type="dfn" href="#fetch-steps">fetch steps</a>。
 
     </p>
       <li>
-       <p>Run the <a data-link-type="dfn" href="#show-steps">show steps</a> for <var>notification</var>.
+       <p>对 <var>notification</var> 执行 <a data-link-type="dfn" href="#show-steps">show steps</a>。
   </p>
      </ol>
      
 
   
     <li>
-     <p>Return <var>n</var>.
+     <p>返回 <var>n</var>.
 </p></ol>
 
 
 
-   <h3 class="heading settled" data-level="3.3" id="static-members"><span class="secno">3.3. </span><span class="content">Static members</span><a class="self-link" href="#static-members"></a></h3>
+   <h3 class="heading settled" data-level="3.3" id="static-members"><span class="secno">3.3. </span><span class="content">静态成员</span><a class="self-link" href="#static-members"></a></h3>
 
 
-   <p>The static <dfn class="idl-code" data-dfn-for="Notification" data-dfn-type="attribute" data-export="" id="dom-notification-permission"><code>permission</code><a class="self-link" href="#dom-notification-permission"></a></dfn>
-attribute’s getter must return <a data-link-type="dfn" href="#permission">permission</a> for
-<a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#entry-settings-object">entry settings object</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#origin">origin</a>.
+   <p>获取静态属性 <dfn class="idl-code" data-dfn-for="Notification" data-dfn-type="attribute" data-export="" id="dom-notification-permission"><code>permission</code><a class="self-link" href="#dom-notification-permission"></a></dfn>
+ 的值必须返回对 
+<a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#entry-settings-object">entry settings object</a> 的 <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#origin">origin</a> 的 <a data-link-type="dfn" href="#permission">permission</a>。
 
 </p>
-   <p>The static <dfn class="idl-code" data-dfn-for="Notification" data-dfn-type="method" data-export="" data-lt="requestPermission()" id="dom-notification-requestpermission"><code>requestPermission(callback)
-</code><a class="self-link" href="#dom-notification-requestpermission"></a></dfn> method, when invoked, must run these steps:
+   <p>当调用静态方法 <dfn class="idl-code" data-dfn-for="Notification" data-dfn-type="method" data-export="" data-lt="requestPermission()" id="dom-notification-requestpermission"><code>requestPermission(callback)
+</code><a class="self-link" href="#dom-notification-requestpermission"></a></dfn> 时，必须执行这些步骤：
 
 </p>
    <ol>
   
     <li>
-     <p>Return, but continue running these steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">in parallel</a>.
+     <p>返回，但依然 <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">in parallel</a> 执行这些子步骤：
 
   </p>
     <li>
-     <p>Let <var>permission</var> be <a data-link-type="dfn" href="#permission">permission</a> for
-  <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#entry-settings-object">entry settings object</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#origin">origin</a>.
+     <p>设 <var>permission</var> 是对
+  <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#entry-settings-object">entry settings object</a> 的 <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#origin">origin</a><a data-link-type="dfn" href="#permission">permission</a>。
 
   </p>
     <li>
-     <p>If <var>permission</var> is "<code>default</code>", ask the user
-  whether showing notifications for the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#entry-settings-object">entry settings object</a>’s
-  <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#origin">origin</a> is acceptable. If it is, set permission to
-  "<code>granted</code>", and "<code>denied</code>" otherwise.
+     <p>如果 <var>permission</var> 是 "<code>default</code>"，询问用户对 <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#entry-settings-object">entry settings object</a> 的 
+  <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#origin">origin</a> 进行显示通知是否可接受。如果可接受，设置许可为
+  "<code>granted</code>"，否则设置许可为 "<code>denied</code>" 。
 
   </p>
     <li>
-     <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task">Queue a task</a> to set <a data-link-type="dfn" href="#permission">permission</a> for
-  <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#entry-settings-object">entry settings object</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#origin">origin</a> to <var>permission</var> and
-  invoke <var>callback</var> with <var>permission</var> as single argument if
-  <var>callback</var> is given. If this throws an exception,
+     <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-task">Queue a task</a> 来设置 <a data-link-type="dfn" href="#permission">permission</a> 为
+  <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#entry-settings-object">entry settings object</a> 的 <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#origin">origin</a> 的 <var>permission</var>，并且当存在 <var>callback</var> 时将 <var>permission</var> 作为参数调用该
+  <var>callback</var> 。如果有任何异常抛出，
   <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#report-the-exception">report the exception</a>.
 </p></ol>
 
 
-   <p class="warning">In designing the platform notifications are the one instance
-thus far where asking the user upfront makes sense. Specifications for other
-APIs should not use this pattern and instead employ one of the
+   <p class="warning">设计时，通知平台是迄今为止询问用户许可比较有意义的实例。其他 API
+的规范没有必要使用该模式，相反可使用
 <a href="http://robert.ocallahan.org/2011/06/permissions-for-web-applications_30.html">
-many more suitable alternatives</a>.
+更多合适的替代品</a>之一。
 
 </p>
-   <h3 class="heading settled" data-level="3.4" id="object-members"><span class="secno">3.4. </span><span class="content">Object members</span><a class="self-link" href="#object-members"></a></h3>
+   <h3 class="heading settled" data-level="3.4" id="object-members"><span class="secno">3.4. </span><span class="content">对象成员</span><a class="self-link" href="#object-members"></a></h3>
 
 
-   <p>The following are the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handlers">event handlers</a> (and their corresponding
-<a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-types">event handler event types</a>) that must be supported as attributes by the
-<code class="idl"><a data-link-type="idl" href="#notification">Notification</a></code> object.
+   <p><code class="idl"><a data-link-type="idl" href="#notification">Notification</a></code> 对象必须作为属性支持下列 <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handlers">event handlers</a> （及其相应的
+<a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-types">event handler event types</a>）。
 
 </p>
    <table>
@@ -902,9 +842,9 @@ many more suitable alternatives</a>.
     
      <tr>
       
-      <th><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handlers">event handler</a>
+      <th><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handlers">事件处理程序</a>
       
-      <th><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-types">event handler event type</a>
+      <th><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-types">事件处理事件类型</a>
  
     <tbody>
   
@@ -922,88 +862,83 @@ many more suitable alternatives</a>.
 </table>
 
 
-   <p>The <dfn class="idl-code" data-dfn-for="Notification" data-dfn-type="method" data-export="" id="dom-notification-close"><code>close()</code><a class="self-link" href="#dom-notification-close"></a></dfn> method, when
-invoked, must run the <a data-link-type="dfn" href="#close-steps">close steps</a> for the
-<a data-link-type="dfn" href="#concept-notification">notification</a>.
+   <p>当调用 <dfn class="idl-code" data-dfn-for="Notification" data-dfn-type="method" data-export="" id="dom-notification-close"><code>close()</code><a class="self-link" href="#dom-notification-close"></a></dfn> 方法时，
+必须对 <a data-link-type="dfn" href="#concept-notification">notification</a> 执行 <a data-link-type="dfn" href="#close-steps">close steps</a>。
 
 </p>
-   <p>The <dfn class="idl-code" data-dfn-for="Notification" data-dfn-type="attribute" data-export="" id="dom-notification-title"><code>title</code><a class="self-link" href="#dom-notification-title"></a></dfn> attribute’s
-getter must return the <a data-link-type="dfn" href="#concept-notification">notification</a>’s
-<a data-link-type="dfn" href="#concept-title">title</a>.
+   <p>获取 <dfn class="idl-code" data-dfn-for="Notification" data-dfn-type="attribute" data-export="" id="dom-notification-title"><code>title</code><a class="self-link" href="#dom-notification-title"></a></dfn> 属性值必须
+返回 <a data-link-type="dfn" href="#concept-notification">notification</a> 的
+<a data-link-type="dfn" href="#concept-title">title</a>。
 
 </p>
-   <p>The <dfn class="idl-code" data-dfn-for="Notification" data-dfn-type="attribute" data-export="" id="dom-notification-dir"><code>dir</code><a class="self-link" href="#dom-notification-dir"></a></dfn> attribute’s
-getter must return the <a data-link-type="dfn" href="#concept-notification">notification</a>’s
-<a data-link-type="dfn" href="#concept-direction">direction</a>.
+   <p>获取 <dfn class="idl-code" data-dfn-for="Notification" data-dfn-type="attribute" data-export="" id="dom-notification-dir"><code>dir</code><a class="self-link" href="#dom-notification-dir"></a></dfn> 属性值必须
+返回 <a data-link-type="dfn" href="#concept-notification">notification</a> 的
+<a data-link-type="dfn" href="#concept-direction">direction</a>。
 
 </p>
-   <p>The <dfn class="idl-code" data-dfn-for="Notification" data-dfn-type="attribute" data-export="" id="dom-notification-lang"><code>lang</code><a class="self-link" href="#dom-notification-lang"></a></dfn> attribute’s
-getter must return the <a data-link-type="dfn" href="#concept-notification">notification</a>’s
-<a data-link-type="dfn" href="#concept-language">language</a>.
+   <p>获取 <dfn class="idl-code" data-dfn-for="Notification" data-dfn-type="attribute" data-export="" id="dom-notification-lang"><code>lang</code><a class="self-link" href="#dom-notification-lang"></a></dfn> 属性值必须
+返回 <a data-link-type="dfn" href="#concept-notification">notification</a> 的 
+<a data-link-type="dfn" href="#concept-language">language</a>。
 
 </p>
-   <p>The <dfn class="idl-code" data-dfn-for="Notification" data-dfn-type="attribute" data-export="" id="dom-notification-body"><code>body</code><a class="self-link" href="#dom-notification-body"></a></dfn> attribute’s
-getter must return the <a data-link-type="dfn" href="#concept-notification">notification</a>’s
-<a data-link-type="dfn" href="#body">body</a>.
+   <p>获取 <dfn class="idl-code" data-dfn-for="Notification" data-dfn-type="attribute" data-export="" id="dom-notification-body"><code>body</code><a class="self-link" href="#dom-notification-body"></a></dfn> 属性值必须
+返回 <a data-link-type="dfn" href="#concept-notification">notification</a> 的 
+<a data-link-type="dfn" href="#body">body</a>。
 
 </p>
-   <p>The <dfn class="idl-code" data-dfn-for="Notification" data-dfn-type="attribute" data-export="" id="dom-notification-tag"><code>tag</code><a class="self-link" href="#dom-notification-tag"></a></dfn> attribute’s
-getter must return the <a data-link-type="dfn" href="#concept-notification">notification</a>’s <a data-link-type="dfn" href="#tag">tag</a>.
+   <p>获取 <dfn class="idl-code" data-dfn-for="Notification" data-dfn-type="attribute" data-export="" id="dom-notification-tag"><code>tag</code><a class="self-link" href="#dom-notification-tag"></a></dfn> 属性值必须
+返回 <a data-link-type="dfn" href="#concept-notification">notification</a> 的 <a data-link-type="dfn" href="#tag">tag</a>。
 
 </p>
-   <p>The <dfn class="idl-code" data-dfn-for="Notification" data-dfn-type="attribute" data-export="" id="dom-notification-icon"><code>icon</code><a class="self-link" href="#dom-notification-icon"></a></dfn> attribute’s
-getter must return the <a data-link-type="dfn" href="#concept-notification">notification</a>’s
-<a data-link-type="dfn" href="#icon-url">icon URL</a>, <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-serializer">serialized</a>, and the empty string if
-there is no <a data-link-type="dfn" href="#concept-notification">notification</a>’s <a data-link-type="dfn" href="#icon-url">icon URL</a>
-otherwise.
+   <p>获取 <dfn class="idl-code" data-dfn-for="Notification" data-dfn-type="attribute" data-export="" id="dom-notification-icon"><code>icon</code><a class="self-link" href="#dom-notification-icon"></a></dfn> 属性值必须
+返回 <a data-link-type="dfn" href="#concept-notification">notification</a> 的 
+<a data-link-type="dfn" href="#icon-url">icon URL</a>, <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-serializer">serialized</a>, ，或者当 <a data-link-type="dfn" href="#concept-notification">notification</a> 没有 <a data-link-type="dfn" href="#icon-url">icon URL</a>
+时返回空字符串。
 
 </p>
-   <p>The <dfn class="idl-code" data-dfn-for="Notification" data-dfn-type="attribute" data-export="" id="dom-notification-sound"><code>sound</code><a class="self-link" href="#dom-notification-sound"></a></dfn> attribute’s
-getter must return the <a data-link-type="dfn" href="#concept-notification">notification</a>’s
-<a data-link-type="dfn" href="#sound-url">sound URL</a>, <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-serializer">serialized</a>, and the empty string if
-there is no <a data-link-type="dfn" href="#concept-notification">notification</a>’s <a data-link-type="dfn" href="#sound-url">sound URL</a>
-otherwise.
+   <p>获取 <dfn class="idl-code" data-dfn-for="Notification" data-dfn-type="attribute" data-export="" id="dom-notification-sound"><code>sound</code><a class="self-link" href="#dom-notification-sound"></a></dfn> 属性值必须
+返回 <a data-link-type="dfn" href="#concept-notification">notification</a>’s
+<a data-link-type="dfn" href="#sound-url">sound URL</a>, <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-serializer">serialized</a>，或者当 <a data-link-type="dfn" href="#concept-notification">notification</a> 的 <a data-link-type="dfn" href="#sound-url">sound URL</a>时
+返回空字符串。
 
 </p>
-   <p>The <dfn class="idl-code" data-dfn-for="Notification" data-dfn-type="attribute" data-export="" id="dom-notification-renotify"><code>renotify</code><a class="self-link" href="#dom-notification-renotify"></a></dfn>
-attribute’s getter must return the
-<a data-link-type="dfn" href="#concept-notification">notification</a>’s <a data-link-type="dfn" href="#renotify-preference-flag">renotify preference flag</a>.
+   <p>获取 <dfn class="idl-code" data-dfn-for="Notification" data-dfn-type="attribute" data-export="" id="dom-notification-renotify"><code>renotify</code><a class="self-link" href="#dom-notification-renotify"></a></dfn> 属性值必须
+返回 
+<a data-link-type="dfn" href="#concept-notification">notification</a>’s <a data-link-type="dfn" href="#renotify-preference-flag">renotify preference flag</a>。
 
 </p>
-   <p>The <dfn class="idl-code" data-dfn-for="Notification" data-dfn-type="attribute" data-export="" id="dom-notification-silent"><code>silent</code><a class="self-link" href="#dom-notification-silent"></a></dfn> attribute’s
-getter must return the <a data-link-type="dfn" href="#concept-notification">notification</a>’s
-<a data-link-type="dfn" href="#silent-preference-flag">silent preference flag</a>.
+   <p>获取 <dfn class="idl-code" data-dfn-for="Notification" data-dfn-type="attribute" data-export="" id="dom-notification-silent"><code>silent</code><a class="self-link" href="#dom-notification-silent"></a></dfn> 属性值必须
+返回 <a data-link-type="dfn" href="#concept-notification">notification</a> 的 
+<a data-link-type="dfn" href="#silent-preference-flag">silent preference flag</a>。
 
 </p>
-   <p>The <dfn class="idl-code" data-dfn-for="Notification" data-dfn-type="attribute" data-export="" id="dom-notification-noscreen"><code>noscreen</code><a class="self-link" href="#dom-notification-noscreen"></a></dfn>
-attribute’s getter must return the
-<a data-link-type="dfn" href="#concept-notification">notification</a>’s
+   <p>获取 <dfn class="idl-code" data-dfn-for="Notification" data-dfn-type="attribute" data-export="" id="dom-notification-noscreen"><code>noscreen</code><a class="self-link" href="#dom-notification-noscreen"></a></dfn> 属性值必须
+返回 
+<a data-link-type="dfn" href="#concept-notification">notification</a> 的 
 <a data-link-type="dfn" href="#screen-off-preference-flag">screen off preference flag</a>.
 
 </p>
-   <p>The <dfn class="idl-code" data-dfn-for="Notification" data-dfn-type="attribute" data-export="" id="dom-notification-sticky"><code>sticky</code><a class="self-link" href="#dom-notification-sticky"></a></dfn> attribute’s
-getter must return the <a data-link-type="dfn" href="#concept-notification">notification</a>’s
-<a data-link-type="dfn" href="#sticky-preference-flag">sticky preference flag</a>.
+   <p>获取 <dfn class="idl-code" data-dfn-for="Notification" data-dfn-type="attribute" data-export="" id="dom-notification-sticky"><code>sticky</code><a class="self-link" href="#dom-notification-sticky"></a></dfn> 属性值必须
+返回 <a data-link-type="dfn" href="#concept-notification">notification</a> 的 
+<a data-link-type="dfn" href="#sticky-preference-flag">sticky preference flag</a>。
 
 </p>
-   <p>The <dfn class="idl-code" data-dfn-for="Notification" data-dfn-type="attribute" data-export="" id="dom-notification-data"><code>data</code><a class="self-link" href="#dom-notification-data"></a></dfn> attribute’s
-getter must return a <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#structured-clone">structured clone</a> of
-<a data-link-type="dfn" href="#concept-notification">notification</a>’s <a data-link-type="dfn" href="#data">data</a>.
+   <p>获取 <dfn class="idl-code" data-dfn-for="Notification" data-dfn-type="attribute" data-export="" id="dom-notification-data"><code>data</code><a class="self-link" href="#dom-notification-data"></a></dfn> 属性值必须
+返回 
+<a data-link-type="dfn" href="#concept-notification">notification</a> 的 <a data-link-type="dfn" href="#data">data</a> 的 <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/interaction.html#structured-clone">structured clone</a>。
 
 
 </p>
-   <h3 class="heading settled" data-level="3.5" id="examples"><span class="secno">3.5. </span><span class="content">Examples</span><a class="self-link" href="#examples"></a></h3>
+   <h3 class="heading settled" data-level="3.5" id="examples"><span class="secno">3.5. </span><span class="content">示例</span><a class="self-link" href="#examples"></a></h3>
 
 
-   <h4 class="heading settled" data-level="3.5.1" id="using-events"><span class="secno">3.5.1. </span><span class="content">Using events</span><a class="self-link" href="#using-events"></a></h4>
+   <h4 class="heading settled" data-level="3.5.1" id="using-events"><span class="secno">3.5.1. </span><span class="content">使用事件</span><a class="self-link" href="#using-events"></a></h4>
 
 
-   <p><code class="idl"><a data-link-type="idl" href="#notification">Notification</a></code> objects dispatch events during their lifecycle, which
-developers can use to generate desired behaviors.
+   <p>开发者可以使用 <code class="idl"><a data-link-type="idl" href="#notification">Notification</a></code> 对象在其生命周期内发出的事件来产生所需要的行为。
 
 </p>
-   <p>The <code>click</code> event dispatches when the user activates a
-notification.
+   <p>当用户激活一个通知时会触发 <code>click</code> 事件。
 
 </p>
    <pre class="example">var not = new Notification("Gebrünn Gebrünn by Paul Kalkbrenner", { icon: "newsong.svg", tag: "song" })
@@ -1011,64 +946,57 @@ notification.onclick = function() { displaySong(this) }</pre>
 
 
 
-   <h4 class="heading settled" data-level="3.5.2" id="tags-example"><span class="secno">3.5.2. </span><span class="content">Using the <code>tag</code> member for multiple instances</span><a class="self-link" href="#tags-example"></a></h4>
+   <h4 class="heading settled" data-level="3.5.2" id="tags-example"><span class="secno">3.5.2. </span><span class="content">多实例使用 <code>tag</code> 成员</span><a class="self-link" href="#tags-example"></a></h4>
 
 
-   <p>Web applications frequently operate concurrently in multiple instances, such
-as when a user opens a mail application in multiple browser tabs. Since the
-desktop is a shared resource, the notifications API provides a way for these
-instances to easily coordinate, by using the <code>tag</code> member.
-
-</p>
-   <p>Notifications which represent the same conceptual event can be tagged in the
-same way, and when both are shown, the user will only receive one notification.
+   <p>Web 应用程序常常在多实例中进行并发操作，比如用户在多个浏览器标签中打开一个邮件
+应用程序。由于桌面是一种共享资源，通知 API 通过 <code>tag</code> 成员提供一种很
+容易协调的方式进行通知。
 
 </p>
-   <pre class="example">Instance 1                                   | Instance 2
+   <p>表示相同概念的事件可以使用相同的标记，当两个通知同时显示时，用户只会收到一个通知。
+
+</p>
+   <pre class="example">实例 1                | 实例 2
                                              |
-// Instance notices there is new mail.       |
+// 有个新邮件的通知实例                         |
 new Notification("New mail from John Doe",   |
                  { tag: 'message1' });       |
                                              |
-                                             |  // Slightly later, this instance notices
-                                             |  // there is new mail.
+                                             |  // 稍后该实例通知有个新邮件。
                                              |  new Notification("New mail from John Doe",
                                              |                   { tag: 'message1' });</pre>
 
 
-   <p>The result of this situation, if the user agent follows the algorithms here, is a
-<strong>single</strong> notification "New mail from John Doe".
+   <p>如果用户代理遵循这里的算法，这种情况的结果就是，用户收到
+<strong>单一的</strong> 通知 "New mail from John Doe".
 
 
 </p>
-   <h4 class="heading settled" data-level="3.5.3" id="using-the-tag-member-for-a-single-instance"><span class="secno">3.5.3. </span><span class="content">Using the <code>tag</code> member for a single instance</span><a class="self-link" href="#using-the-tag-member-for-a-single-instance"></a></h4>
+   <h4 class="heading settled" data-level="3.5.3" id="using-the-tag-member-for-a-single-instance"><span class="secno">3.5.3. </span><span class="content">单实例使用 <code>tag</code> 成员</span><a class="self-link" href="#using-the-tag-member-for-a-single-instance"></a></h4>
 
 
-   <p>The <code>tag</code> member can also be used by a single instance of an
-application to keep its notifications as current as possible as state changes.
-
-</p>
-   <p>For example, if Alice is using a chat application with Bob, and Bob sends
-multiple messages while Alice is idle, the application may prefer that Alice not
-see a desktop notification for each message.
+   <p>单实例应用程序也可以使用 <code>tag</code>成员来尽可能保持其通知的最新状态变化。
 
 </p>
-   <pre class="example">// Bob says "Hi"
+   <p>例如，Alice 和 Bob 正在使用一个聊天应用程序，当 Alice 空闲时 Bob 发送了多条信息，
+应用程序可能更倾向于 Alice 没有看到每个消息的通知界面。
+
+</p>
+   <pre class="example">// Bob 说 "Hi"
 new Notification("Bob: Hi", { tag: 'chat_Bob' });
 
-// Bob says "Are you free this afternoon?"
+// Bob 说 "Are you free this afternoon?"
 new Notification("Bob: Hi / Are you free this afternoon?", { tag: 'chat_Bob' });</pre>
 
 
-   <p>The result of this situation is a <i>single</i> notification; the second one
-replaces the first having the same tag. In a platform that queues notifications
-(first-in-first-out), using the tag allows the notification to also maintain its
-position in the queue. Platforms where the newest notifications are shown first,
-a similar result could be achieved using the <code class="idl"><a class="idl-code" data-link-type="method" href="#dom-notification-close">close()</a></code> method.
+   <p>这种情况的结果就是<i>单一的</i>通知；第二条消息会替换第一条消息，因为它们具有
+相同的标签。在该队列通知（先进先出）平台，使用标签允许通知保持其在队列中的位置。
+在总是最先显示最新通知的平台里，也可以使用 <code class="idl"><a class="idl-code" data-link-type="method" href="#dom-notification-close">close()</a></code> 方法实现类似的结果。
 
 
 </p>
-   <h2 class="heading settled" data-level="4" id="service-worker-api"><span class="secno">4. </span><span class="content">Service worker API</span><a class="self-link" href="#service-worker-api"></a></h2>
+   <h2 class="heading settled" data-level="4" id="service-worker-api"><span class="secno">4. </span><span class="content">服务线程 API</span><a class="self-link" href="#service-worker-api"></a></h2>
 
 
    <pre class="idl">dictionary <dfn class="idl-code" data-dfn-type="dictionary" data-export="" data-global-name="" id="dictdef-getnotificationoptions">GetNotificationOptions<a class="self-link" href="#dictdef-getnotificationoptions"></a></dfn> {
@@ -1096,142 +1024,126 @@ partial interface <a class="idl-code" data-link-type="interface" href="https://s
 </pre>
 
 
-   <p>The <dfn class="idl-code" data-dfn-for="ServiceWorkerRegistration" data-dfn-type="method" data-export="" data-lt="showNotification()" id="dom-serviceworkerregistration-shownotification"><code>
-showNotification(title, options)</code><a class="self-link" href="#dom-serviceworkerregistration-shownotification"></a></dfn> method, when invoked, must run
-these steps:
+   <p>当调用 <dfn class="idl-code" data-dfn-for="ServiceWorkerRegistration" data-dfn-type="method" data-export="" data-lt="showNotification()" id="dom-serviceworkerregistration-shownotification"><code>
+showNotification(title, options)</code><a class="self-link" href="#dom-serviceworkerregistration-shownotification"></a></dfn> 方法时，必须执行这些步骤：
 
 </p>
    <ol>
   
     <li>
-     <p>Let <var>promise</var> be a new promise.
+     <p>设 <var>promise</var> 是一个新的 promise.
 
   </p>
     <li>
-     <p>Let <var>notification</var> be the result of
-  <a data-link-type="dfn" href="#create-a-notification">creating a notification</a> given
-  <var>title</var> and <var>options</var>. Rethrow any exceptions.
+     <p>设<var>notification</var> 是给定
+  <var>title</var> 和 <var>options</var> 以后所
+  <a data-link-type="dfn" href="#create-a-notification">creating a notification</a>的。重新抛出任何异常。
 
   </p>
     <li>
-     <p>If <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#context-object">context object</a>’s <a data-link-type="dfn" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/#dfn-active-worker">active worker</a>
-  is null, reject <var>promise</var> with a <code>TypeError</code> exception.
+     <p>如果 <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#context-object">context object</a> 的 <a data-link-type="dfn" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/#dfn-active-worker">active worker</a>
+  是 null，拒绝 <var>promise</var> 并抛出 <code>TypeError</code> 异常。
 
   </p>
     <li>
-     <p>Set <var>notification</var>’s <a data-link-type="dfn" href="#service-worker-registration">service worker registration</a> to the
-  <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#context-object">context object</a>.
+     <p>设置 <var>notification</var> 的 <a data-link-type="dfn" href="#service-worker-registration">service worker registration</a> 为该
+  <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#context-object">context object</a>。
 
   </p>
     <li>
-     <p>Run these substeps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">in parallel</a>:
+     <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">in parallel</a> 执行这些子步骤：
 
   </p>
      <ol>
     
       <li>
-       <p>If <a data-link-type="dfn" href="#permission">permission</a> for <var>notification</var>’s
-    <a data-link-type="dfn" href="#concept-origin">origin</a> is not "<code>granted</code>", reject
-    <var>promise</var> with a <code>TypeError</code> exception, and terminate
-    these substeps.
+       <p>如果对 <var>notification</var> 的
+    <a data-link-type="dfn" href="#concept-origin">origin</a><a data-link-type="dfn" href="#permission">permission</a> 不是 "<code>granted</code>"，拒绝
+    <var>promise</var> 并抛出 <code>TypeError</code> 异常，而后终止这些子步骤。
 
     </p>
       <li>
-       <p>Otherwise, resolve <var>promise</var> with undefined.
+       <p>否则，用 undefined 处理 <var>promise</var>。
 
     </p>
       <li>
-       <p>Run the <a data-link-type="dfn" href="#fetch-steps">fetch steps</a> for <var>notification</var>.
+       <p>对 <var>notification</var> 执行 <a data-link-type="dfn" href="#fetch-steps">fetch steps</a>。
 
     </p>
       <li>
-       <p>Run the <a data-link-type="dfn" href="#show-steps">show steps</a> for <var>notification</var>.
+       <p>对 <var>notification</var>show steps</a> 执行 <a data-link-type="dfn" href="#show-steps">。
   </p>
      </ol>
      
 
   
     <li>
-     <p>Return <var>promise</var>.
+     <p>返回 <var>promise</var>。
 </p></ol>
 
 
-   <p>The <dfn class="idl-code" data-dfn-for="ServiceWorkerRegistration" data-dfn-type="method" data-export="" data-lt="getNotifications()" id="dom-serviceworkerregistration-getnotifications"><code>
-getNotifications(filter)</code><a class="self-link" href="#dom-serviceworkerregistration-getnotifications"></a></dfn> method, when invoked, must run these
-steps:
+   <p>当调用 <dfn class="idl-code" data-dfn-for="ServiceWorkerRegistration" data-dfn-type="method" data-export="" data-lt="getNotifications()" id="dom-serviceworkerregistration-getnotifications"><code>
+getNotifications(filter)</code><a class="self-link" href="#dom-serviceworkerregistration-getnotifications"></a></dfn> 方法时，必须执行这些步骤：
 
 </p>
    <ol>
   
     <li>
-     <p>Let <var>promise</var> be a new promise.
+     <p>设 <var>promise</var> 是一个新的 promise。
 
   </p>
     <li>
-     <p>Run these substeps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">in parallel</a>:
+     <p><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">in parallel</a>执行这些子步骤：
 
   </p>
      <ol>
     
       <li>
-       <p>Let <var>tag</var> be <var>filter</var>’s <code>tag</code>.
+       <p>设 <var>tag</var> 是 <var>filter</var> 的 <code>tag</code>。
 
     </p>
       <li>
-       <p>Let <var>notifications</var> be a list of all
-    <a data-link-type="dfn" href="#concept-notification">notifications</a> in the
-    <a data-link-type="dfn" href="#list-of-notifications">list of notifications</a> whose <a data-link-type="dfn" href="#concept-origin">origin</a> is the
-    <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#entry-settings-object">entry settings object</a>’s <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#origin">origin</a>, whose
-    <a data-link-type="dfn" href="#service-worker-registration">service worker registration</a> is the <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#context-object">context object</a>, and whose
-    <a data-link-type="dfn" href="#tag">tag</a>, if <var>tag</var> is not the empty string, is <var>tag</var>.
+       <p>设 <var>notifications</var> 是所有那些在 <a data-link-type="dfn" href="#list-of-notifications">list of notifications</a> 中，
+    其 <a data-link-type="dfn" href="#concept-origin">origin</a> 是 <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#entry-settings-object">entry settings object</a> 的 <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#origin">origin</a>，其 <a data-link-type="dfn" href="#service-worker-registration">service worker registration</a> 是 <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#context-object">context object</a>，并且如果 <var>tag</var> 非空字符串
+    的话，其 <var>tag</var> 是 <a data-link-type="dfn" href="#tag">tag</a> 的 <a data-link-type="dfn" href="#concept-notification">notifications</a>。
 
     </p>
       <li>
-       <p>Let <var>objects</var> be an empty JavaScript array.
+       <p>设 <var>objects</var> 是一空的 JavaScript 数组。
 
     </p>
       <li>
-       <p>For each <a data-link-type="dfn" href="#concept-notification">notification</a> in
-    <var>notifications</var>, in creation order, create a new <code class="idl"><a data-link-type="idl" href="#notification">Notification</a></code>
-    object representing <a data-link-type="dfn" href="#concept-notification">notification</a> and push
-    that object to <var>objects</var>.
+       <p>对 <var>notifications</var> 中每一个 <a data-link-type="dfn" href="#concept-notification">notification</a>，
+    按照其创建的顺序，来创建 <code class="idl"><a data-link-type="idl" href="#notification">Notification</a></code> 对象表示 <a data-link-type="dfn" href="#concept-notification">notification</a> 并且将该对象压入 <var>objects</var>.
 
     </p>
       <li>
-       <p>Resolve <var>promise</var> with <var>objects</var>.
+       <p>用 <var>objects</var> 处理 <var>promise</var>。
   </p>
      </ol>
      
 
   
     <li>
-     <p>Return <var>promise</var>.
+     <p>返回 <var>promise</var>。
 </p></ol>
 
 
-   <p class="note" role="note">This method returns zero or more new <code class="idl"><a data-link-type="idl" href="#notification">Notification</a></code> objects
-which might represent the same underlying <a data-link-type="dfn" href="#concept-notification">
-notification</a> of <code class="idl"><a data-link-type="idl" href="#notification">Notification</a></code> objects already in existence.
+   <p class="note" role="note">该方法返回零或多个新的 <code class="idl"><a data-link-type="idl" href="#notification">Notification</a></code> 对象可能表示已然存在的相同底层 <code class="idl"><a data-link-type="idl" href="#notification">Notification</a></code> 对象的 <a data-link-type="dfn" href="#concept-notification">notification</a>。
 
 </p>
    <hr>
 
 
-   <p>To <dfn data-dfn-type="dfn" data-noexport="" id="fire-a-service-worker-notification-event-named-e">fire a service worker notification event named <var>e</var><a class="self-link" href="#fire-a-service-worker-notification-event-named-e"></a></dfn>
-given <var>notification</var>,
-<a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire">fire an event named <i>e</i></a> with an
-<a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event">event</a> using the <code class="idl"><a data-link-type="idl" href="#notificationevent">NotificationEvent</a></code> interface whose
-<code class="idl"><a data-link-type="idl" href="#dom-notificationevent-notification">notification</a></code> attribute is initialized to a new
-<code class="idl"><a data-link-type="idl" href="#notification">Notification</a></code> object representing <var>notification</var>.
+   <p>为给定 <var>notification</var> <dfn data-dfn-type="dfn" data-noexport="" id="fire-a-service-worker-notification-event-named-e">fire a service worker notification event named <var>e</var><a class="self-link" href="#fire-a-service-worker-notification-event-named-e"></a></dfn>，使用 <code class="idl"><a data-link-type="idl" href="#notificationevent">NotificationEvent</a></code> 属性初始化为新的 <code class="idl"><a data-link-type="idl" href="#dom-notificationevent-notification">notification</a></code> 对象表示 <var>notification</var> 的 <code class="idl"><a data-link-type="idl" href="#notification">Notification</a></code> 接口来
+<a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event-fire">fire an event named <i>e</i></a> 的服务线程通知 <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-event">event</a>。
 
 </p>
-   <p>The <code class="idl"><a data-link-type="idl" href="#dom-notificationevent-notification">notification</a></code> attribute’s getter must return the
-value it was initialized to.
+   <p>获取 <code class="idl"><a data-link-type="idl" href="#dom-notificationevent-notification">notification</a></code> 属性值必须返回其所初始化的值。
 
 </p>
-   <p>The following is the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handlers">event handler</a> (and its corresponding
-<a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-types">event handler event type</a>) that must be supported as attribute by the
-<code class="idl"><a data-link-type="idl" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/#serviceworkerglobalscope">ServiceWorkerGlobalScope</a></code> object:
+   <p><code class="idl"><a data-link-type="idl" href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/#serviceworkerglobalscope">ServiceWorkerGlobalScope</a></code> 对象必须作为属性支持下列 <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handlers">event handler</a> （及其相应的
+<a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-types">event handler event type</a>) ：
 
 </p>
    <table>
@@ -1240,9 +1152,9 @@ value it was initialized to.
     
      <tr>
       
-      <th><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handlers">event handler</a>
+      <th><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handlers">事件处理程序</a>
       
-      <th><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-types">event handler event type</a>
+      <th><a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-types">事件处理事件类型</a>
   
     <tbody>
     
@@ -1259,7 +1171,7 @@ value it was initialized to.
    <h2 class="no-num heading settled" id="acknowledgments"><span class="content">Acknowledgments</span><a class="self-link" href="#acknowledgments"></a></h2>
 
 
-   <p>Thanks to
+   <p>感谢牛人：
 Aharon (Vladimir) Lanin,
 Alex Russell,
 Arkadiusz Michalski,
@@ -1284,17 +1196,16 @@ Simon Pieters
 for being awesome.
 
 </p>
-   <p>This standard is written by
+   <p>本标准由
 <a href="//annevankesteren.nl/" lang="nl">Anne van Kesteren</a>
 (<a href="//www.mozilla.org/">Mozilla</a>,
-<a href="mailto:annevk@annevk.nl">annevk@annevk.nl</a>). An earlier iteration was written
-by John Gregg (<a href="//www.google.com/">Google</a>,
-<a href="mailto:johnnyg@google.com">johnnyg@google.com</a>).
+<a href="mailto:annevk@annevk.nl">annevk@annevk.nl</a>)编写。
+前几版由 John Gregg (<a href="//www.google.com/">Google</a>,
+<a href="mailto:johnnyg@google.com">johnnyg@google.com</a>)编写。
 
 </p>
-   <p>Per <a href="//creativecommons.org/publicdomain/zero/1.0/" rel="license">CC0</a>, to
-the extent possible under law, the editors have waived all copyright and related or
-neighboring rights to this work.
+   <p>根据 <a href="//creativecommons.org/publicdomain/zero/1.0/" rel="license">CC0</a>，
+在法律允许的范围内，编辑们放弃所有版权及与之相关或邻接的权利。
 
 </p></main>
   
